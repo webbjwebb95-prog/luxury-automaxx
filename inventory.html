@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory – Luxury Automaxx</title>
+  <meta name="description" content="Browse our full inventory of premium pre-owned luxury and exotic vehicles. Filter by make, model, price, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/inventory.css" />
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-logo">LUXURY AUTOMAXX</div></div>
+
+<nav class="navbar scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="brand-top">LUXURY AUTOMAXX</span>
+      <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html" class="active">Inventory</a>
+      <a href="trade.html">Max Trade Value</a>
+      <a href="customer-portal.html">Customer Portal</a>
+      <a href="client-portal.html" class="btn btn-gold btn-sm">Client Portal</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div>
+        <span class="overline" style="display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Our Collection</span>
+        <h1>Full <span class="gold-text">Inventory</span></h1>
+        <p>Hand-curated luxury & exotic vehicles — all certified, all extraordinary.</p>
+      </div>
+      <div style="text-align:right;">
+        <div class="inventory-count" id="totalCount">0</div>
+        <div class="inventory-count-label">Vehicles Available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter Bar -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <div class="form-group filter-search">
+        <input type="text" id="searchInput" placeholder="🔍  Search make, model, year…" />
+      </div>
+      <div class="form-group">
+        <select id="makeFilter">
+          <option value="">All Makes</option>
+          <option>Audi</option>
+          <option>Bentley</option>
+          <option>BMW</option>
+          <option>Ferrari</option>
+          <option>Lamborghini</option>
+          <option>Maserati</option>
+          <option>McLaren</option>
+          <option>Mercedes-Benz</option>
+          <option>Porsche</option>
+          <option>Rolls-Royce</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="typeFilter">
+          <option value="">All Types</option>
+          <option>Coupe</option>
+          <option>Sedan</option>
+          <option>SUV</option>
+          <option>Convertible</option>
+          <option>Supercar</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="yearFilter">
+          <option value="">All Years</option>
+          <option>2024</option><option>2023</option><option>2022</option>
+          <option>2021</option><option>2020</option><option>2019</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="priceFilter">
+          <option value="">Any Price</option>
+          <option value="0-75000">Under $75K</option>
+          <option value="75000-150000">$75K – $150K</option>
+          <option value="150000-250000">$150K – $250K</option>
+          <option value="250000-9999999">$250K+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="sortFilter">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="year-desc">Newest First</option>
+          <option value="miles-asc">Lowest Miles</option>
+        </select>
+      </div>
+      <div class="filter-view-toggle">
+        <button class="view-btn active" id="gridViewBtn" title="Grid view">⊞</button>
+        <button class="view-btn" id="listViewBtn" title="List view">☰</button>
+      </div>
+      <div class="filter-count-badge" id="resultsBadge">0 results</div>
+    </div>
+  </div>
+</div>
+
+<!-- Inventory Grid -->
+<section class="inventory-section">
+  <div class="container">
+    <div class="inventory-grid" id="inventoryGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<!-- Vehicle Detail Modal -->
+<div class="modal-overlay" id="vehicleModal">
+  <div class="modal-box">
+    <div class="modal-close">
+      <h3>Vehicle Details</h3>
+      <button id="modalCloseBtn" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-top">LUXURY AUTOMAXX</span>
+        <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+        <p>Chicagoland's premier destination for luxury and exotic pre-owned vehicles.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="inventory.html">Inventory</a></li>
+          <li><a href="trade.html">Max Trade Value</a></li>
+          <li><a href="customer-portal.html">Customer Portal</a></li>
+          <li><a href="client-portal.html">Client Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Financing</a></li><li><a href="#">Warranty</a></li><li><a href="#">Delivery</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+17085550100">(708) 555-0100</a></li><li><a href="mailto:info@luxuryautomaxx.com">info@luxuryautomaxx.com</a></li><li><a href="#">Tinley Park, IL</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Luxury Automaxx. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top">↑</button>
+
+<script src="js/main.js"></script>
+<script src="js/inventory.js"></script>
+</body>
+</html>

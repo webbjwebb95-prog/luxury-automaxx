@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal – Luxury Automaxx</title>
+  <meta name="description" content="Luxury Automaxx dealer staff portal. Manage inventory, leads, appointments, and sales analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/portals.css" />
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-logo">LUXURY AUTOMAXX</div></div>
+
+<nav class="navbar scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="brand-top">LUXURY AUTOMAXX</span>
+      <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="trade.html">Max Trade Value</a>
+      <a href="customer-portal.html">Customer Portal</a>
+      <a href="client-portal.html" class="btn btn-gold btn-sm active">Client Portal</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="portal-hero">
+  <div class="container" style="position:relative;z-index:1;">
+    <span class="overline">Staff Access</span>
+    <h1>Client <span class="gold-text">Dashboard</span></h1>
+    <p>Dealer staff portal — manage inventory, leads, appointments, and business analytics in real time.</p>
+  </div>
+</section>
+
+<!-- Auth Gate -->
+<section class="client-auth-section" id="clientAuthSection">
+  <div class="container">
+    <div class="client-auth-inner">
+      <div class="auth-logo">
+        <span class="brand-top">LUXURY AUTOMAXX</span>
+        <span class="brand-sub">Staff Portal</span>
+      </div>
+      <div class="auth-gate-label">🔐 Authorized Personnel Only</div>
+      <div class="client-login-hint">
+        <strong>Demo:</strong> Enter any email + password to access the dashboard.
+      </div>
+      <div class="form-group">
+        <label>Staff Email</label>
+        <input type="email" id="staffEmail" placeholder="staff@luxuryautomaxx.com" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="staffPassword" placeholder="••••••••" />
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select id="staffRole">
+          <option value="sales">Sales Advisor</option>
+          <option value="manager">Sales Manager</option>
+          <option value="finance">Finance Manager</option>
+          <option value="gm">General Manager</option>
+        </select>
+      </div>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;margin-top:4px;" onclick="staffSignIn()">
+        🔓 Access Dashboard
+      </button>
+      <div style="text-align:center;margin-top:16px;">
+        <a href="#" style="font-size:0.82rem;color:var(--light-grey);">Forgot password? Contact IT</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Client Dashboard -->
+<section class="client-dashboard" id="clientDashboard">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="cd-header">
+      <div>
+        <h2>Good Evening, <span class="gold-text" id="staffName">Marcus</span> 👋</h2>
+        <p class="muted">Here's your dealership overview for today — May 6, 2026.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div class="user-pill">
+          <div class="user-avatar" id="staffAvatar">M</div>
+          <div>
+            <div class="user-name" id="staffFullName">Marcus R.</div>
+            <div class="muted" id="staffRoleLabel" style="font-size:0.72rem;">Sales Advisor</div>
+          </div>
+        </div>
+        <button class="btn btn-dark btn-sm" onclick="staffSignOut()">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="cd-kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-val">$1.84M</div>
+        <div class="kpi-label">MTD Revenue</div>
+        <div class="kpi-change">↑ 12% vs last month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🚗</div>
+        <div class="kpi-val">23</div>
+        <div class="kpi-label">Units Sold (MTD)</div>
+        <div class="kpi-change">↑ 4 vs last month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📋</div>
+        <div class="kpi-val">47</div>
+        <div class="kpi-label">Active Leads</div>
+        <div class="kpi-change">↑ 9 new today</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🏎️</div>
+        <div class="kpi-val">18</div>
+        <div class="kpi-label">Vehicles in Stock</div>
+        <div class="kpi-change down">↓ 3 vs last week</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⭐</div>
+        <div class="kpi-val">4.9</div>
+        <div class="kpi-label">Avg. Rating</div>
+        <div class="kpi-change">↑ 0.1 this month</div>
+      </div>
+    </div>
+
+    <!-- Dashboard Tabs -->
+    <div class="dashboard-tabs" style="margin-bottom:28px;">
+      <button class="dash-tab active" onclick="switchClientTab('overview',this)">📊 Overview</button>
+      <button class="dash-tab" onclick="switchClientTab('inventory',this)">🚗 Inventory</button>
+      <button class="dash-tab" onclick="switchClientTab('leads',this)">📋 Leads</button>
+      <button class="dash-tab" onclick="switchClientTab('appointments',this)">📅 Appointments</button>
+      <button class="dash-tab" onclick="switchClientTab('analytics',this)">📈 Analytics</button>
+    </div>
+
+    <!-- Tab: Overview -->
+    <div class="tab-panel active" id="ctab-overview">
+      <div class="cd-grid">
+        <!-- Activity Feed -->
+        <div class="cd-panel">
+          <div class="cd-panel-header">
+            <h4>🔔 Live Activity Feed</h4>
+            <span class="badge badge-gold" style="font-size:0.65rem;">Live</span>
+          </div>
+          <div class="cd-panel-body">
+            <div class="activity-feed" id="activityFeed">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Chart -->
+        <div class="cd-panel">
+          <div class="cd-panel-header">
+            <h4>📈 Monthly Revenue</h4>
+            <span style="font-size:0.75rem;color:var(--light-grey);">Last 6 months</span>
+          </div>
+          <div class="cd-panel-body">
+            <div class="revenue-chart" id="revenueChart"></div>
+            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--dark-4);display:flex;justify-content:space-between;">
+              <div><div style="font-size:0.72rem;color:var(--light-grey);text-transform:uppercase;letter-spacing:0.1em;">Best Month</div><div style="font-weight:700;color:var(--pure-white);">March 2026</div></div>
+              <div style="text-align:right;"><div style="font-size:0.72rem;color:var(--light-grey);text-transform:uppercase;letter-spacing:0.1em;">6-Month Total</div><div style="font-family:var(--font-display);font-size:1.2rem;color:var(--gold);">$9.2M</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Leads -->
+        <div class="cd-panel full">
+          <div class="cd-panel-header">
+            <h4>🔥 Hot Leads Today</h4>
+            <a href="#" onclick="switchClientTab('leads',document.querySelector('.dash-tab:nth-child(3)'));return false;" style="font-size:0.78rem;color:var(--gold);">View All →</a>
+          </div>
+          <div class="cd-panel-body">
+            <div class="leads-list" id="hotLeads"></div>
+          </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="cd-panel full">
+          <div class="cd-panel-header">
+            <h4>📅 Today's Appointments</h4>
+            <span style="font-size:0.75rem;color:var(--light-grey);">Wednesday, May 6, 2026</span>
+          </div>
+          <div class="cd-panel-body">
+            <div style="overflow-x:auto;">
+              <table class="cd-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Vehicle</th>
+                    <th>Advisor</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>10:00 AM</td><td>James Whitfield</td><td>Test Drive</td><td>2023 Porsche 911</td><td>Marcus R.</td><td><span class="status-pill status-sold">Completed</span></td></tr>
+                  <tr><td>12:30 PM</td><td>Priya Sharma</td><td>Finance Signing</td><td>2022 Bentley GT</td><td>David K.</td><td><span class="status-pill status-sold">Completed</span></td></tr>
+                  <tr><td>2:00 PM</td><td>Alex Johnson</td><td>Test Drive</td><td>2023 Porsche 911</td><td>Marcus R.</td><td><span class="status-pill status-pending">Upcoming</span></td></tr>
+                  <tr><td>3:30 PM</td><td>Robert Chen</td><td>Trade-In Appraisal</td><td>2021 BMW M8</td><td>Sarah L.</td><td><span class="status-pill status-pending">Upcoming</span></td></tr>
+                  <tr><td>5:00 PM</td><td>Aisha Monroe</td><td>Vehicle Delivery</td><td>2022 Mercedes S580</td><td>David K.</td><td><span class="status-pill status-pending">Upcoming</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Inventory -->
+    <div class="tab-panel" id="ctab-inventory">
+      <div class="cd-panel">
+        <div class="cd-panel-header">
+          <h4>🚗 Current Inventory (18 vehicles)</h4>
+          <div style="display:flex;gap:8px;">
+            <input type="text" placeholder="Search inventory…" style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:7px 12px;color:var(--white);font-family:var(--font-body);font-size:0.82rem;outline:none;" oninput="filterClientInventory(this.value)" />
+            <button class="btn btn-gold btn-sm" onclick="showToast('Add Vehicle form coming soon!','info')">+ Add Vehicle</button>
+          </div>
+        </div>
+        <div class="cd-panel-body" style="overflow-x:auto;">
+          <table class="cd-table" id="inventoryTable">
+            <thead>
+              <tr>
+                <th>Vehicle</th>
+                <th>Year</th>
+                <th>Mileage</th>
+                <th>List Price</th>
+                <th>Cost</th>
+                <th>Margin</th>
+                <th>Days on Lot</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Leads -->
+    <div class="tab-panel" id="ctab-leads">
+      <div class="cd-grid">
+        <div class="cd-panel full">
+          <div class="cd-panel-header">
+            <h4>📋 All Active Leads (47)</h4>
+            <div style="display:flex;gap:8px;">
+              <select style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:7px 12px;color:var(--white);font-family:var(--font-body);font-size:0.82rem;" onchange="showToast('Filter applied','info')">
+                <option>All Leads</option>
+                <option>Hot Leads</option>
+                <option>Warm Leads</option>
+                <option>Cool Leads</option>
+              </select>
+              <button class="btn btn-gold btn-sm" onclick="showToast('Export ready!','success')">Export CSV</button>
+            </div>
+          </div>
+          <div class="cd-panel-body">
+            <div class="leads-list" id="allLeads"></div>
+          </div>
+        </div>
+
+        <div class="cd-panel">
+          <div class="cd-panel-header"><h4>📊 Lead Pipeline</h4></div>
+          <div class="cd-panel-body">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;"><span style="color:var(--silver);">New Inquiry</span><span style="color:var(--gold);font-weight:700;">18</span></div>
+                <div style="height:8px;background:var(--dark-4);border-radius:4px;overflow:hidden;"><div style="height:100%;width:38%;background:var(--gold);border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;"><span style="color:var(--silver);">Test Drive Scheduled</span><span style="color:var(--gold);font-weight:700;">11</span></div>
+                <div style="height:8px;background:var(--dark-4);border-radius:4px;overflow:hidden;"><div style="height:100%;width:23%;background:var(--gold);border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;"><span style="color:var(--silver);">Offer Made</span><span style="color:var(--gold);font-weight:700;">8</span></div>
+                <div style="height:8px;background:var(--dark-4);border-radius:4px;overflow:hidden;"><div style="height:100%;width:17%;background:var(--gold);border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;"><span style="color:var(--silver);">Financing in Progress</span><span style="color:var(--gold);font-weight:700;">6</span></div>
+                <div style="height:8px;background:var(--dark-4);border-radius:4px;overflow:hidden;"><div style="height:100%;width:13%;background:var(--gold-light);border-radius:4px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;"><span style="color:var(--success);">Closed / Won</span><span style="color:var(--success);font-weight:700;">4</span></div>
+                <div style="height:8px;background:var(--dark-4);border-radius:4px;overflow:hidden;"><div style="height:100%;width:9%;background:var(--success);border-radius:4px;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cd-panel">
+          <div class="cd-panel-header"><h4>✉️ Quick Message</h4></div>
+          <div class="cd-panel-body">
+            <div class="form-group">
+              <label>To (Lead)</label>
+              <select>
+                <option>Alex Johnson – Porsche 911</option>
+                <option>James Whitfield – BMW M8</option>
+                <option>Priya Sharma – Bentley GT</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Template</label>
+              <select onchange="applyTemplate(this)">
+                <option value="">Custom message</option>
+                <option value="followup">Follow-Up Check-In</option>
+                <option value="drivereminder">Test Drive Reminder</option>
+                <option value="offer">Special Offer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea id="msgTemplate" rows="4" placeholder="Type your message…"></textarea>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-gold btn-sm" style="flex:1;justify-content:center;" onclick="showToast('Message sent!','success')">Send Email</button>
+              <button class="btn btn-dark btn-sm" style="flex:1;justify-content:center;" onclick="showToast('SMS sent!','success')">Send SMS</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Appointments -->
+    <div class="tab-panel" id="ctab-appointments">
+      <div class="cd-panel">
+        <div class="cd-panel-header">
+          <h4>📅 Appointment Manager</h4>
+          <button class="btn btn-gold btn-sm" onclick="showToast('New appointment form coming soon!','info')">+ New Appointment</button>
+        </div>
+        <div class="cd-panel-body" style="overflow-x:auto;">
+          <table class="cd-table">
+            <thead>
+              <tr><th>Date &amp; Time</th><th>Customer</th><th>Type</th><th>Vehicle</th><th>Advisor</th><th>Notes</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>May 6 – 2:00 PM</td><td>Alex Johnson</td><td>Test Drive</td><td>2023 Porsche 911</td><td>Marcus R.</td><td>Interested in Sport Chrono</td>
+                <td><span class="status-pill status-pending">Upcoming</span></td>
+                <td><button class="btn btn-dark btn-sm" onclick="showToast('Marked complete!','success')">✓ Done</button></td>
+              </tr>
+              <tr>
+                <td>May 6 – 3:30 PM</td><td>Robert Chen</td><td>Trade-In</td><td>2021 BMW M8</td><td>Sarah L.</td><td>Has 2020 Audi RS7</td>
+                <td><span class="status-pill status-pending">Upcoming</span></td>
+                <td><button class="btn btn-dark btn-sm" onclick="showToast('Marked complete!','success')">✓ Done</button></td>
+              </tr>
+              <tr>
+                <td>May 6 – 5:00 PM</td><td>Aisha Monroe</td><td>Delivery</td><td>2022 Mercedes S580</td><td>David K.</td><td>Concierge delivery to home</td>
+                <td><span class="status-pill status-pending">Upcoming</span></td>
+                <td><button class="btn btn-dark btn-sm" onclick="showToast('Marked complete!','success')">✓ Done</button></td>
+              </tr>
+              <tr>
+                <td>May 7 – 10:00 AM</td><td>Marcus Tillman</td><td>Test Drive</td><td>2022 Lamborghini Huracán</td><td>Marcus R.</td><td>High-intent buyer, cash</td>
+                <td><span class="status-pill status-available">Confirmed</span></td>
+                <td><button class="btn btn-dark btn-sm" onclick="showToast('Reminder sent!','success')">Remind</button></td>
+              </tr>
+              <tr>
+                <td>May 7 – 1:00 PM</td><td>Elena Voss</td><td>Finance</td><td>2023 Rolls-Royce Ghost</td><td>David K.</td><td>Pre-approved $350K</td>
+                <td><span class="status-pill status-available">Confirmed</span></td>
+                <td><button class="btn btn-dark btn-sm" onclick="showToast('Reminder sent!','success')">Remind</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Analytics -->
+    <div class="tab-panel" id="ctab-analytics">
+      <div class="cd-grid">
+        <div class="cd-panel">
+          <div class="cd-panel-header"><h4>📈 Sales by Advisor (MTD)</h4></div>
+          <div class="cd-panel-body">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Marcus R.</span><span style="color:var(--gold);font-weight:700;">9 units · $642K</span></div>
+                <div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:78%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));border-radius:5px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">David K.</span><span style="color:var(--gold);font-weight:700;">8 units · $714K</span></div>
+                <div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:87%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));border-radius:5px;"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Sarah L.</span><span style="color:var(--gold);font-weight:700;">6 units · $488K</span></div>
+                <div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:59%;background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));border-radius:5px;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cd-panel">
+          <div class="cd-panel-header"><h4>🏎️ Top Selling Makes (MTD)</h4></div>
+          <div class="cd-panel-body">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Porsche</span><span style="color:var(--gold);">6 units</span></div><div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:100%;background:var(--gold);border-radius:5px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Mercedes-Benz</span><span style="color:var(--gold);">5 units</span></div><div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:83%;background:var(--gold);border-radius:5px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">BMW</span><span style="color:var(--gold);">4 units</span></div><div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:67%;background:var(--gold);border-radius:5px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Bentley</span><span style="color:var(--gold);">3 units</span></div><div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:50%;background:var(--gold);border-radius:5px;"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px;"><span style="color:var(--pure-white);font-weight:600;">Ferrari / Lamborghini</span><span style="color:var(--gold);">2+2 units</span></div><div style="height:10px;background:var(--dark-4);border-radius:5px;overflow:hidden;"><div style="height:100%;width:33%;background:var(--gold);border-radius:5px;"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cd-panel full">
+          <div class="cd-panel-header">
+            <h4>📊 Revenue Trend (2026)</h4>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-dark btn-sm" onclick="showToast('Report exported!','success')">Export PDF</button>
+              <button class="btn btn-dark btn-sm" onclick="showToast('Data exported!','success')">Export CSV</button>
+            </div>
+          </div>
+          <div class="cd-panel-body">
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px;">
+              <div style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:16px;text-align:center;">
+                <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-grey);margin-bottom:4px;">Jan 2026</div>
+                <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold);">$1.42M</div>
+              </div>
+              <div style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:16px;text-align:center;">
+                <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-grey);margin-bottom:4px;">Feb 2026</div>
+                <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold);">$1.58M</div>
+              </div>
+              <div style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:16px;text-align:center;border-color:var(--gold);">
+                <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-grey);margin-bottom:4px;">Mar 2026</div>
+                <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold);">$2.21M</div>
+                <div style="font-size:0.68rem;color:var(--success);margin-top:4px;">↑ Best Month</div>
+              </div>
+              <div style="background:var(--dark-3);border:1px solid var(--dark-4);border-radius:var(--radius);padding:16px;text-align:center;">
+                <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-grey);margin-bottom:4px;">Apr 2026</div>
+                <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold);">$1.97M</div>
+              </div>
+              <div style="background:var(--dark-3);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:16px;text-align:center;">
+                <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--light-grey);margin-bottom:4px;">May 2026</div>
+                <div style="font-family:var(--font-display);font-size:1.3rem;color:var(--gold);">$1.84M*</div>
+                <div style="font-size:0.68rem;color:var(--light-grey);margin-top:4px;">* Month to date</div>
+              </div>
+            </div>
+            <div class="revenue-chart" id="analyticsChart" style="height:160px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-top">LUXURY AUTOMAXX</span>
+        <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+        <p>Chicagoland's premier destination for luxury and exotic pre-owned vehicles.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="inventory.html">Inventory</a></li><li><a href="trade.html">Max Trade Value</a></li><li><a href="customer-portal.html">Customer Portal</a></li><li><a href="client-portal.html">Client Portal</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Financing</a></li><li><a href="#">Warranty</a></li><li><a href="#">Delivery</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+17085550100">(708) 555-0100</a></li><li><a href="mailto:info@luxuryautomaxx.com">info@luxuryautomaxx.com</a></li><li><a href="#">Tinley Park, IL</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Luxury Automaxx. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top">↑</button>
+
+<script src="js/main.js"></script>
+<script src="js/client-portal.js"></script>
+</body>
+</html>

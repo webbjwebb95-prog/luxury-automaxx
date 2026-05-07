@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Max Trade Value – Luxury Automaxx</title>
+  <meta name="description" content="Get the maximum trade-in value for your vehicle. Our proprietary system guarantees the highest offer — often thousands above competitor quotes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/trade.css" />
+</head>
+<body>
+
+<div id="page-loader"><div class="loader-logo">LUXURY AUTOMAXX</div></div>
+
+<nav class="navbar scrolled">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="brand-top">LUXURY AUTOMAXX</span>
+      <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="trade.html" class="active">Max Trade Value</a>
+      <a href="customer-portal.html">Customer Portal</a>
+      <a href="client-portal.html" class="btn btn-gold btn-sm">Client Portal</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="trade-hero">
+  <div class="container" style="position:relative;z-index:1;">
+    <span class="overline">Sell or Trade Your Vehicle</span>
+    <h1>Get Your <span class="gold-text">Max Trade Value</span></h1>
+    <p>Our proprietary valuation engine analyzes thousands of live market data points to guarantee you the highest possible offer — no negotiations, no pressure.</p>
+    <div class="trust-badges">
+      <div class="trust-badge"><span class="icon">⚡</span> Instant Valuation</div>
+      <div class="trust-badge"><span class="icon">🔒</span> No Obligation</div>
+      <div class="trust-badge"><span class="icon">💰</span> Beat Any Offer</div>
+      <div class="trust-badge"><span class="icon">🚗</span> Free Pickup</div>
+    </div>
+  </div>
+</section>
+
+<!-- Trade Section -->
+<section class="trade-section">
+  <div class="container">
+    <div class="trade-layout">
+
+      <!-- Form Panel -->
+      <div>
+        <!-- Stepper -->
+        <div class="stepper" id="stepper">
+          <div class="step-item active" data-step="1">
+            <div class="step-circle">1</div>
+            <span class="step-label">Your Vehicle</span>
+          </div>
+          <div class="step-item" data-step="2">
+            <div class="step-circle">2</div>
+            <span class="step-label">Condition</span>
+          </div>
+          <div class="step-item" data-step="3">
+            <div class="step-circle">3</div>
+            <span class="step-label">Features</span>
+          </div>
+          <div class="step-item" data-step="4">
+            <div class="step-circle">4</div>
+            <span class="step-label">Your Info</span>
+          </div>
+        </div>
+
+        <div class="trade-form-panel">
+          <!-- Step 1: Vehicle Info -->
+          <div class="trade-step active" id="step1">
+            <h3>Tell Us About Your Vehicle</h3>
+            <p class="step-desc">Enter your vehicle's basic information to start your instant valuation.</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Year</label>
+                <select id="tv-year">
+                  <option value="">Select Year</option>
+                  <script>for(let y=2026;y>=2000;y--) document.write(`<option>${y}</option>`);</script>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Make</label>
+                <select id="tv-make">
+                  <option value="">Select Make</option>
+                  <option>Acura</option><option>Audi</option><option>Bentley</option>
+                  <option>BMW</option><option>Cadillac</option><option>Chevrolet</option>
+                  <option>Ferrari</option><option>Ford</option><option>GMC</option>
+                  <option>Honda</option><option>Hyundai</option><option>Infiniti</option>
+                  <option>Jaguar</option><option>Jeep</option><option>Kia</option>
+                  <option>Lamborghini</option><option>Land Rover</option><option>Lexus</option>
+                  <option>Maserati</option><option>McLaren</option><option>Mercedes-Benz</option>
+                  <option>Nissan</option><option>Porsche</option><option>Ram</option>
+                  <option>Rolls-Royce</option><option>Tesla</option><option>Toyota</option>
+                  <option>Volkswagen</option><option>Volvo</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Model</label>
+                <input type="text" id="tv-model" placeholder="e.g. 911 Carrera S" />
+              </div>
+              <div class="form-group">
+                <label>Trim / Package</label>
+                <input type="text" id="tv-trim" placeholder="e.g. Sport, Premium" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Mileage</label>
+                <input type="number" id="tv-miles" placeholder="e.g. 28500" min="0" />
+              </div>
+              <div class="form-group">
+                <label>Exterior Color</label>
+                <input type="text" id="tv-color" placeholder="e.g. Midnight Black" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>VIN (Optional – for most accurate offer)</label>
+              <input type="text" id="tv-vin" placeholder="17-character VIN" maxlength="17" style="text-transform:uppercase;" />
+            </div>
+            <div class="step-nav">
+              <span></span>
+              <button class="btn btn-gold" onclick="nextStep(1)">Next: Condition →</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Condition -->
+          <div class="trade-step" id="step2">
+            <h3>Vehicle Condition</h3>
+            <p class="step-desc">Select the option that best describes your vehicle's current condition.</p>
+            <div class="condition-grid">
+              <div class="condition-btn" onclick="selectCondition(this,'Excellent')">
+                <span class="icon">🌟</span>
+                <span class="label">Excellent</span>
+                <span class="desc">Like new, no visible wear</span>
+              </div>
+              <div class="condition-btn" onclick="selectCondition(this,'Good')">
+                <span class="icon">👍</span>
+                <span class="label">Good</span>
+                <span class="desc">Minor wear, well maintained</span>
+              </div>
+              <div class="condition-btn" onclick="selectCondition(this,'Fair')">
+                <span class="icon">🙂</span>
+                <span class="label">Fair</span>
+                <span class="desc">Some visible wear or dents</span>
+              </div>
+              <div class="condition-btn" onclick="selectCondition(this,'Poor')">
+                <span class="icon">🔧</span>
+                <span class="label">Poor</span>
+                <span class="desc">Significant damage or issues</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Number of Owners</label>
+              <select id="tv-owners">
+                <option>1 Owner</option>
+                <option>2 Owners</option>
+                <option>3+ Owners</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Any Accident History?</label>
+              <select id="tv-accidents">
+                <option value="no">No accidents reported</option>
+                <option value="minor">Minor fender bender (repaired)</option>
+                <option value="major">Major accident (repaired)</option>
+                <option value="unknown">Not sure</option>
+              </select>
+            </div>
+            <div class="step-nav">
+              <button class="btn btn-dark" onclick="prevStep(2)">← Back</button>
+              <button class="btn btn-gold" onclick="nextStep(2)">Next: Features →</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Features -->
+          <div class="trade-step" id="step3">
+            <h3>Features &amp; Options</h3>
+            <p class="step-desc">Check all features that apply to your vehicle. More features = higher offer.</p>
+            <div class="feature-checks">
+              <div class="feature-check"><input type="checkbox" id="f1" /><label for="f1">Panoramic Roof</label></div>
+              <div class="feature-check"><input type="checkbox" id="f2" /><label for="f2">Navigation System</label></div>
+              <div class="feature-check"><input type="checkbox" id="f3" /><label for="f3">Heated Seats</label></div>
+              <div class="feature-check"><input type="checkbox" id="f4" /><label for="f4">Ventilated Seats</label></div>
+              <div class="feature-check"><input type="checkbox" id="f5" /><label for="f5">Premium Sound System</label></div>
+              <div class="feature-check"><input type="checkbox" id="f6" /><label for="f6">Adaptive Cruise Control</label></div>
+              <div class="feature-check"><input type="checkbox" id="f7" /><label for="f7">Lane Keep Assist</label></div>
+              <div class="feature-check"><input type="checkbox" id="f8" /><label for="f8">360° Camera</label></div>
+              <div class="feature-check"><input type="checkbox" id="f9" /><label for="f9">Performance Package</label></div>
+              <div class="feature-check"><input type="checkbox" id="f10" /><label for="f10">Night Vision</label></div>
+              <div class="feature-check"><input type="checkbox" id="f11" /><label for="f11">Massaging Seats</label></div>
+              <div class="feature-check"><input type="checkbox" id="f12" /><label for="f12">Rear Seat Entertainment</label></div>
+            </div>
+            <div class="form-group">
+              <label>Additional Notes</label>
+              <textarea id="tv-notes" rows="3" placeholder="Any additional features, modifications, or details about your vehicle…"></textarea>
+            </div>
+            <div class="step-nav">
+              <button class="btn btn-dark" onclick="prevStep(3)">← Back</button>
+              <button class="btn btn-gold" onclick="nextStep(3)">Next: Your Info →</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Contact Info -->
+          <div class="trade-step" id="step4">
+            <h3>Your Contact Information</h3>
+            <p class="step-desc">We'll send your guaranteed offer to the information below. 100% private and secure.</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" id="tv-fname" placeholder="First name" />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" id="tv-lname" placeholder="Last name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="tv-email" placeholder="you@example.com" />
+              </div>
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="tv-phone" placeholder="(555) 000-0000" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ZIP Code</label>
+              <input type="text" id="tv-zip" placeholder="60477" maxlength="5" />
+            </div>
+            <div class="form-group" style="display:flex;align-items:center;gap:10px;">
+              <input type="checkbox" id="tv-consent" checked style="accent-color:var(--gold);width:16px;height:16px;" />
+              <label for="tv-consent" style="font-size:0.82rem;color:var(--light-grey);text-transform:none;letter-spacing:0;">I agree to be contacted by Luxury Automaxx regarding my vehicle valuation.</label>
+            </div>
+            <div class="step-nav">
+              <button class="btn btn-dark" onclick="prevStep(4)">← Back</button>
+              <button class="btn btn-gold btn-lg" onclick="submitTrade()">Get My Max Offer 🚀</button>
+            </div>
+          </div>
+
+          <!-- Result Panel -->
+          <div class="result-panel" id="resultPanel">
+            <div class="result-header">
+              <div class="result-emoji">🎉</div>
+              <h3>Your Guaranteed Offer Is Ready!</h3>
+              <p>Based on live market data and your vehicle details, here is your Max Trade Value offer.</p>
+            </div>
+            <div class="result-value-box">
+              <div class="rvb-label">Your Max Trade Value</div>
+              <div class="rvb-amount" id="resultAmount">$0</div>
+              <div class="rvb-range">
+                <span>Estimated range: <strong id="resultLow">$0</strong> – <strong id="resultHigh">$0</strong></span>
+              </div>
+              <div class="rvb-expires">⏰ Offer valid for 7 days</div>
+            </div>
+            <div class="result-actions">
+              <a href="customer-portal.html" class="btn btn-gold btn-lg">Schedule Pickup</a>
+              <button class="btn btn-outline" onclick="resetTrade()">Get Another Quote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="trade-sidebar">
+        <div class="sidebar-card">
+          <h4>🔴 Live Offers Today</h4>
+          <ul class="process-steps" style="list-style:none;padding:0;">
+            <li class="live-offer-item">
+              <div><div class="loi-car">2021 BMW M5 Competition</div><div class="loi-sub">8,400 mi · Excellent</div></div>
+              <div class="loi-amount">$87,200</div>
+            </li>
+            <li class="live-offer-item">
+              <div><div class="loi-car">2020 Porsche 911 Turbo</div><div class="loi-sub">14,100 mi · Good</div></div>
+              <div class="loi-amount">$118,500</div>
+            </li>
+            <li class="live-offer-item">
+              <div><div class="loi-car">2022 Mercedes G63 AMG</div><div class="loi-sub">6,800 mi · Excellent</div></div>
+              <div class="loi-amount">$192,000</div>
+            </li>
+            <li class="live-offer-item">
+              <div><div class="loi-car">2019 Ferrari 488 GTB</div><div class="loi-sub">11,200 mi · Good</div></div>
+              <div class="loi-amount">$214,800</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>📋 How It Works</h4>
+          <ul class="process-steps" style="list-style:none;padding:0;">
+            <li><div class="ps-num">1</div><div class="ps-text"><strong>Enter Vehicle Info</strong><span>Tell us about your car — year, make, model, mileage.</span></div></li>
+            <li><div class="ps-num">2</div><div class="ps-text"><strong>Rate Condition</strong><span>Honest condition rating ensures your highest offer.</span></div></li>
+            <li><div class="ps-num">3</div><div class="ps-text"><strong>Get Instant Offer</strong><span>Our AI analyzes live market data for your best price.</span></div></li>
+            <li><div class="ps-num">4</div><div class="ps-text"><strong>Schedule & Get Paid</strong><span>We come to you. Same-day payment available.</span></div></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card" style="border-color:var(--gold);background:rgba(201,168,76,0.05);">
+          <h4 style="color:var(--gold);">💬 Beat Any Offer</h4>
+          <p style="color:var(--light-grey);font-size:0.88rem;line-height:1.7;">Have a written offer from another dealer? We'll beat it — guaranteed. Bring or email your competing offer and we'll top it within 24 hours.</p>
+          <a href="tel:+17085550100" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:16px;">📞 Call Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Sell Section -->
+<section class="why-sell">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="overline">The Automaxx Advantage</span>
+      <h2>Why Sell to <span class="gold-text">Us</span></h2>
+      <div class="divider-gold"></div>
+    </div>
+    <div class="why-sell-grid">
+      <div class="ws-card reveal"><div class="ws-icon">💸</div><h4>Highest Offers</h4><p>We consistently pay thousands more than traditional dealerships and online services.</p></div>
+      <div class="ws-card reveal"><div class="ws-icon">⚡</div><h4>Same-Day Payment</h4><p>Accept your offer and receive payment the same day — via check or wire transfer.</p></div>
+      <div class="ws-card reveal"><div class="ws-icon">🚗</div><h4>We Come to You</h4><p>Free vehicle pickup anywhere in the Chicagoland area. No need to drive to us.</p></div>
+      <div class="ws-card reveal"><div class="ws-icon">📝</div><h4>We Handle Paperwork</h4><p>Our team handles all title transfers and DMV paperwork so you don't have to.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-top">LUXURY AUTOMAXX</span>
+        <span class="brand-sub">Premium Pre-Owned Vehicles</span>
+        <p>Chicagoland's premier destination for luxury and exotic pre-owned vehicles.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="inventory.html">Inventory</a></li><li><a href="trade.html">Max Trade Value</a></li><li><a href="customer-portal.html">Customer Portal</a></li><li><a href="client-portal.html">Client Portal</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Financing</a></li><li><a href="#">Warranty</a></li><li><a href="#">Delivery</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="tel:+17085550100">(708) 555-0100</a></li><li><a href="mailto:info@luxuryautomaxx.com">info@luxuryautomaxx.com</a></li><li><a href="#">Tinley Park, IL</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Luxury Automaxx. All rights reserved.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-top" aria-label="Back to top">↑</button>
+
+<script src="js/main.js"></script>
+<script src="js/trade.js"></script>
+</body>
+</html>
