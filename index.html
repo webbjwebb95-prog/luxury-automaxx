@@ -50,11 +50,103 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 .btn-gold:hover { background:linear-gradient(135deg,#e8d070,#C9A84C); box-shadow:0 0 20px rgba(201,168,76,0.5); transform:translateY(-2px); }
 .btn-outline-gold { border:2px solid var(--gold); color:var(--gold); background:transparent; cursor:pointer; transition:all 0.3s; }
 .btn-outline-gold:hover { background:var(--gold); color:#0A0A0A; box-shadow:0 0 20px rgba(201,168,76,0.4); }
-.split-hero { position:relative; min-height:85vh; overflow:hidden; }
-.split-hero::before { content:''; position:absolute; left:0; top:0; width:50%; height:100%; background:linear-gradient(180deg,#87CEEB 0%,#5ba8d9 40%,#1a6bc7 100%); z-index:0; }
-.split-hero::after { content:''; position:absolute; right:0; top:0; width:50%; height:100%; background:linear-gradient(180deg,#0a0a0a 0%,#1a1200 60%,#2a1f00 100%); z-index:0; }
-.split-line { position:absolute; left:50%; top:0; width:4px; height:100%; background:linear-gradient(180deg,transparent,var(--gold),transparent); z-index:2; box-shadow:0 0 30px rgba(201,168,76,0.6); }
-.hero-content { position:relative; z-index:3; }
+
+/* NEW HERO */
+.new-hero { position:relative; width:100%; min-height:100vh; overflow:hidden; display:flex; flex-direction:column; }
+.hero-bg-wrap { position:relative; flex:1; display:flex; flex-direction:column; }
+.hero-day-half { position:absolute; top:0; left:0; width:50%; height:100%; z-index:0;
+  background: linear-gradient(180deg, #a8d8f0 0%, #87CEEB 25%, #5ba8d9 55%, #3a8fd4 80%, #2a7abf 100%);
+}
+.hero-day-half::before { content:''; position:absolute; top:8%; left:15%; width:180px; height:70px; background:radial-gradient(ellipse,rgba(255,255,255,0.45) 0%,transparent 70%); border-radius:50%; filter:blur(8px); }
+.hero-day-half::after { content:''; position:absolute; top:15%; right:10%; width:120px; height:50px; background:radial-gradient(ellipse,rgba(255,255,255,0.35) 0%,transparent 70%); border-radius:50%; filter:blur(10px); }
+.hero-night-half { position:absolute; top:0; right:0; width:50%; height:100%; z-index:0;
+  background: linear-gradient(180deg, #0a0a0a 0%, #0d0800 30%, #1a0f00 60%, #221500 80%, #1a0f00 100%);
+}
+.hero-night-half::before { content:''; position:absolute; bottom:0; left:0; width:100%; height:35%;
+  background: linear-gradient(0deg, rgba(201,168,76,0.06) 0%, transparent 60%),
+              repeating-linear-gradient(90deg, transparent 0px, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 42px);
+}
+.hero-divider { position:absolute; left:50%; top:0; width:2px; height:100%; z-index:5;
+  background:linear-gradient(180deg, transparent 5%, var(--gold) 30%, var(--gold) 70%, transparent 95%);
+  box-shadow: 0 0 18px rgba(201,168,76,0.5), 0 0 40px rgba(201,168,76,0.2);
+  transform:translateX(-50%);
+}
+.hero-center { position:relative; z-index:10; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:100px 16px 30px; }
+
+/* Title */
+.hero-main-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,7vw,5.5rem); font-weight:800; color:#fff; text-shadow:0 0 30px rgba(201,168,76,0.6), 0 0 60px rgba(201,168,76,0.25), 0 2px 4px rgba(0,0,0,0.5); letter-spacing:0.08em; text-align:center; line-height:1.1; }
+.hero-sub-title { font-family:'Montserrat',sans-serif; font-size:clamp(0.7rem,1.4vw,1rem); color:var(--gold); letter-spacing:0.4em; text-align:center; margin-top:8px; font-weight:500; }
+
+/* Building */
+.dealership-wrap { position:relative; width:100%; max-width:900px; margin:30px auto 0; }
+.dealership-scene { position:relative; width:100%; height:260px; }
+
+/* Parking lot / ground */
+.parking-lot { position:absolute; bottom:0; left:0; right:0; height:60px; background:linear-gradient(180deg,#2a2a2a 0%,#1a1a1a 100%); border-top:2px solid #3a3a3a; z-index:1; }
+.parking-lot::after { content:''; position:absolute; top:0; right:0; width:50%; height:100%;
+  background: linear-gradient(180deg, rgba(201,168,76,0.05) 0%, rgba(201,168,76,0.02) 40%, transparent 100%),
+              repeating-linear-gradient(90deg, transparent 0px, transparent 50px, rgba(201,168,76,0.015) 50px, rgba(201,168,76,0.015) 52px);
+}
+.parking-lines { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:58px; z-index:2; }
+.parking-line { width:2px; height:18px; background:rgba(255,255,255,0.12); }
+
+/* Building body */
+.building-main { position:absolute; bottom:58px; left:50%; transform:translateX(-50%); width:88%; max-width:780px; height:140px; z-index:3; }
+.building-facade { position:absolute; inset:0; background:linear-gradient(180deg,#e8e4de 0%,#d5d0c8 40%,#c8c2b8 100%); border:1px solid rgba(0,0,0,0.1); }
+.building-facade-night { position:absolute; top:0; right:0; width:50%; height:100%; background:linear-gradient(180deg,#3a3530 0%,#2e2a24 40%,#252118 100%); clip-path:polygon(calc(50% - 50vw + 50%) 0,100% 0,100% 100%,calc(50% - 50vw + 50%) 100%); }
+
+/* Roof */
+.building-roof-bar { position:absolute; bottom:138px; left:50%; transform:translateX(-50%); width:92%; max-width:810px; height:14px; background:linear-gradient(180deg,#555 0%,#444 100%); z-index:4; border-radius:2px 2px 0 0; }
+.gable-roof { position:absolute; bottom:150px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:100px solid transparent; border-right:100px solid transparent; border-bottom:50px solid #555; z-index:4; }
+.gable-roof::after { content:''; position:absolute; top:8px; left:-80px; width:0; height:0; border-left:80px solid transparent; border-right:80px solid transparent; border-bottom:42px solid #666; }
+
+/* Pillars */
+.pillars { position:absolute; bottom:58px; left:50%; transform:translateX(-50%); width:88%; max-width:780px; height:140px; z-index:5; display:flex; justify-content:space-between; padding:0 5%; }
+.pillar { width:8px; height:100%; background:linear-gradient(90deg,#ccc,#e0e0e0,#ccc); border-radius:1px; }
+
+/* Windows */
+.window-row { position:absolute; bottom:80px; left:50%; transform:translateX(-50%); display:flex; gap:16px; z-index:6; }
+.bldg-window { width:48px; height:50px; background:linear-gradient(180deg,rgba(135,206,235,0.3),rgba(100,160,200,0.2)); border:2px solid rgba(0,0,0,0.15); position:relative; overflow:hidden; }
+.bldg-window::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,0.15),transparent); }
+.bldg-window.lit { background:linear-gradient(180deg,rgba(201,168,76,0.5),rgba(201,168,76,0.3)); box-shadow:0 0 12px rgba(201,168,76,0.3), 0 0 30px rgba(201,168,76,0.1); }
+.bldg-window.lit::before { background:linear-gradient(180deg,rgba(255,220,120,0.2),transparent); }
+
+/* Showroom glass */
+.showroom-glass { position:absolute; bottom:58px; left:50%; transform:translateX(-50%); width:200px; height:75px; z-index:6;
+  background:linear-gradient(180deg,rgba(201,168,76,0.15),rgba(201,168,76,0.08));
+  border:2px solid rgba(201,168,76,0.3); border-bottom:none;
+  box-shadow:0 0 20px rgba(201,168,76,0.15);
+}
+.showroom-glass::after { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:rgba(201,168,76,0.2); transform:translateX(-50%); }
+
+/* Sign */
+.building-sign-text { position:absolute; bottom:134px; left:50%; transform:translateX(-50%); z-index:7; white-space:nowrap; text-align:center; padding:4px 18px;
+  font-family:'Playfair Display',serif; font-size:clamp(9px,1.6vw,14px); font-weight:700; color:var(--gold); letter-spacing:0.15em;
+  text-shadow:0 0 12px rgba(201,168,76,0.8), 0 0 25px rgba(201,168,76,0.4);
+  background:rgba(10,10,10,0.6); border:1px solid rgba(201,168,76,0.3); border-radius:3px;
+}
+
+/* Cars row */
+.cars-row { position:absolute; bottom:12px; left:50%; transform:translateX(-50%); display:flex; align-items:flex-end; gap:6px; z-index:8; }
+.car-slot { display:flex; flex-direction:column; align-items:center; }
+.car-emoji { font-size:clamp(22px,3.5vw,36px); filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5)); line-height:1; }
+.car-emoji.center-car { font-size:clamp(30px,4.5vw,48px); }
+.car-shadow { width:clamp(30px,4vw,44px); height:4px; background:radial-gradient(ellipse,rgba(0,0,0,0.35),transparent); border-radius:50%; margin-top:-2px; }
+.car-shadow.center { width:clamp(40px,5vw,56px); }
+
+/* CTA Buttons */
+.hero-cta-row { position:relative; z-index:10; display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding:20px 16px 30px; }
+.cta-pill { border-radius:30px; padding:12px 24px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer; transition:all 0.3s; white-space:nowrap; min-height:44px; display:inline-flex; align-items:center; gap:6px; }
+.cta-pill-gold { background:linear-gradient(135deg,#C9A84C,#e8d070); color:#0A0A0A; border:none; }
+.cta-pill-gold:hover { box-shadow:0 0 20px rgba(201,168,76,0.5); transform:translateY(-2px); }
+.cta-pill-outline { background:transparent; color:#fff; border:2px solid var(--gold); }
+.cta-pill-outline:hover { background:var(--gold); color:#0A0A0A; box-shadow:0 0 20px rgba(201,168,76,0.4); }
+
+/* Buy Sell Trade Finance banner */
+.bstf-banner { background:#0A0A0A; border-top:2px solid var(--gold); border-bottom:2px solid var(--gold); padding:18px 16px; text-align:center; z-index:10; position:relative; }
+.bstf-banner p { font-family:'Montserrat',sans-serif; font-weight:700; color:var(--gold); letter-spacing:0.3em; font-size:clamp(0.85rem,2vw,1.3rem); text-shadow:0 0 20px rgba(201,168,76,0.5); }
+
+/* Keep existing styles below */
 .page-section { display:none; }
 .page-section.active { display:block; }
 .nav-link { position:relative; cursor:pointer; transition:color 0.3s; }
@@ -89,13 +181,6 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 .modal-overlay.show { display:flex; }
 .back-to-top { position:fixed; bottom:30px; left:30px; width:48px; height:48px; background:var(--gold); color:#0A0A0A; border:none; border-radius:50%; cursor:pointer; z-index:800; opacity:0; transition:opacity 0.3s; display:flex; align-items:center; justify-content:center; }
 .back-to-top.visible { opacity:1; }
-.building-silhouette { position:relative; width:340px; height:200px; margin:0 auto; }
-.building-body { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:280px; height:120px; background:linear-gradient(180deg,#1a1a1a,#111); border-top:3px solid var(--gold); }
-.building-roof { position:absolute; bottom:120px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:160px solid transparent; border-right:160px solid transparent; border-bottom:60px solid #1a1a1a; }
-.building-sign { position:absolute; bottom:80px; left:50%; transform:translateX(-50%); color:var(--gold); font-family:'Playfair Display',serif; font-size:14px; font-weight:700; white-space:nowrap; text-shadow:0 0 10px rgba(201,168,76,0.8); }
-.building-windows { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:12px; }
-.building-window { width:20px; height:25px; background:rgba(201,168,76,0.3); border:1px solid rgba(201,168,76,0.5); }
-.building-cars { position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); display:flex; gap:8px; font-size:20px; }
 .tab-btn { cursor:pointer; padding:8px 20px; border-bottom:2px solid transparent; transition:all 0.3s; color:#999; }
 .tab-btn.active { border-bottom-color:var(--gold); color:var(--gold); }
 .tab-content { display:none; }
@@ -103,17 +188,36 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 .star { color:var(--gold); }
 @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 .float-anim { animation:float 3s ease-in-out infinite; }
-.img-vehicle { width:100%; height:200px; object-fit:cover; border-radius:12px 12px 0 0; }
+
+/* Split hero for non-home pages */
+.split-hero { position:relative; min-height:85vh; overflow:hidden; }
+.split-hero::before { content:''; position:absolute; left:0; top:0; width:50%; height:100%; background:linear-gradient(180deg,#87CEEB 0%,#5ba8d9 40%,#1a6bc7 100%); z-index:0; }
+.split-hero::after { content:''; position:absolute; right:0; top:0; width:50%; height:100%; background:linear-gradient(180deg,#0a0a0a 0%,#1a1200 60%,#2a1f00 100%); z-index:0; }
+.split-line { position:absolute; left:50%; top:0; width:4px; height:100%; background:linear-gradient(180deg,transparent,var(--gold),transparent); z-index:2; box-shadow:0 0 30px rgba(201,168,76,0.6); }
+.hero-content { position:relative; z-index:3; }
+
 @media(max-width:767px) {
+  .hero-day-half { width:100%; height:50%; }
+  .hero-night-half { width:100%; height:50%; top:50%; left:0; right:auto; }
+  .hero-divider { left:0; top:50%; width:100%; height:2px; transform:none;
+    background:linear-gradient(90deg, transparent 5%, var(--gold) 30%, var(--gold) 70%, transparent 95%);
+  }
+  .dealership-scene { height:200px; }
+  .building-main { height:100px; }
+  .building-roof-bar { bottom:98px; height:10px; }
+  .gable-roof { bottom:106px; border-left:60px solid transparent; border-right:60px solid transparent; border-bottom:30px solid #555; }
+  .gable-roof::after { top:5px; left:-48px; border-left:48px solid transparent; border-right:48px solid transparent; border-bottom:25px solid #666; }
+  .building-sign-text { bottom:94px; font-size:8px; padding:3px 10px; }
+  .window-row { bottom:55px; gap:8px; }
+  .bldg-window { width:30px; height:32px; }
+  .showroom-glass { width:120px; height:48px; }
+  .parking-lot { height:40px; }
+  .cars-row { bottom:6px; gap:3px; }
+  .pillars { height:100px; }
   .split-hero { min-height:70vh; }
   .split-hero::before, .split-hero::after { width:100%; height:50%; }
   .split-hero::after { top:50%; }
   .split-line { left:0; top:50%; width:100%; height:4px; }
-  .building-silhouette { width:220px; height:140px; }
-  .building-body { width:180px; height:80px; }
-  .building-roof { bottom:80px; border-left:110px solid transparent; border-right:110px solid transparent; border-bottom:40px solid #1a1a1a; }
-  .building-sign { bottom:55px; font-size:10px; }
-  .building-cars { font-size:14px; }
 }
 </style>
 </head>
@@ -143,19 +247,16 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 <nav data-id="11" id="main-nav-k1l2" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:rgba(10,10,10,0.8);backdrop-filter:blur(12px);">
   <div data-id="12" class="max-w-7xl mx-auto px-4 md:px-6">
     <div data-id="13" class="flex items-center justify-between h-16 md:h-20">
-      <!-- Left Nav -->
       <div data-id="14" class="hidden md:flex items-center gap-6 text-sm font-body font-medium tracking-wide">
         <span data-id="15" class="nav-link active" data-page="home" id="nav-home-m3n4">HOME</span>
         <span data-id="16" class="nav-link" data-page="inventory" id="nav-inv-o5p6">INVENTORY</span>
         <span data-id="17" class="nav-link" data-page="financing" id="nav-fin-q7r8">FINANCING</span>
         <span data-id="18" class="nav-link" data-page="about" id="nav-about-s9t0">ABOUT US</span>
       </div>
-      <!-- Logo Center -->
       <div data-id="19" class="text-center flex-shrink-0" id="nav-logo-u1v2">
         <h1 data-id="20" class="font-display text-lg md:text-xl gold-text font-bold tracking-wider leading-tight cursor-pointer" data-page="home">LUXURY AUTOMAXX</h1>
         <p data-id="21" class="text-[10px] md:text-xs text-gold-400/70 tracking-[0.25em] font-body" style="font-variant:small-caps;">• tinley park •</p>
       </div>
-      <!-- Right Nav -->
       <div data-id="22" class="hidden md:flex items-center gap-6 text-sm font-body font-medium tracking-wide">
         <span data-id="23" class="nav-link" data-page="about" id="nav-rev-w3x4">REVIEWS</span>
         <span data-id="24" class="nav-link" data-page="portal" id="nav-portal-y5z6">PORTAL</span>
@@ -165,7 +266,6 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
           <span data-id="28" id="fav-badge-e1f2" class="absolute -top-2 -right-2 bg-gold-400 text-night-400 text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold tabular-nums hidden">0</span>
         </span>
       </div>
-      <!-- Mobile Menu Button -->
       <button data-id="29" id="mobile-menu-btn-g3h4" class="md:hidden p-2 text-gold-400" aria-label="Open menu">
         <i data-id="30" data-lucide="menu" class="w-6 h-6"></i>
       </button>
@@ -233,315 +333,366 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 <!-- ============================================================ -->
 <section data-id="78" id="page-home" class="page-section active">
 
-  <!-- HERO -->
-  <div data-id="79" class="split-hero flex items-center justify-center pt-20">
-    <div data-id="80" class="split-line hidden md:block"></div>
-    <div data-id="81" class="hero-content text-center px-4 py-16 md:py-0">
-      <!-- Building Silhouette -->
-      <div data-id="82" class="building-silhouette mb-6 float-anim">
-        <div data-id="83" class="building-roof"></div>
-        <div data-id="84" class="building-body">
-          <div data-id="85" class="building-windows">
-            <div data-id="86" class="building-window"></div>
-            <div data-id="87" class="building-window"></div>
-            <div data-id="88" class="building-window"></div>
-            <div data-id="89" class="building-window"></div>
-            <div data-id="90" class="building-window"></div>
-            <div data-id="91" class="building-window"></div>
+  <!-- NEW HERO -->
+  <div data-id="79" class="new-hero" id="hero-section-xk9m">
+    <div data-id="80" class="hero-bg-wrap">
+      <!-- Day half -->
+      <div data-id="81" class="hero-day-half" id="hero-day-bg-r3t1"></div>
+      <!-- Night half -->
+      <div data-id="82" class="hero-night-half" id="hero-night-bg-v7w2"></div>
+      <!-- Gold divider -->
+      <div data-id="83" class="hero-divider hidden md:block" id="hero-divider-j4k5"></div>
+
+      <!-- Center content -->
+      <div data-id="84" class="hero-center">
+        <!-- Title -->
+        <h1 data-id="85" class="hero-main-title" id="hero-title-g9h0">LUXURY AUTOMAXX</h1>
+        <p data-id="86" class="hero-sub-title" id="hero-sub-i1j2">• TINLEY PARK •</p>
+
+        <!-- Dealership Building Scene -->
+        <div data-id="87" class="dealership-wrap" id="dealership-scene-p8q3">
+          <div data-id="88" class="dealership-scene">
+            <!-- Gable roof -->
+            <div data-id="89" class="gable-roof" id="gable-roof-a2b1"></div>
+            <!-- Roof bar -->
+            <div data-id="90" class="building-roof-bar" id="roof-bar-c4d3"></div>
+            <!-- Building body -->
+            <div data-id="91" class="building-main" id="bldg-main-e6f5">
+              <div data-id="92" class="building-facade"></div>
+            </div>
+            <!-- Pillars -->
+            <div data-id="93" class="pillars" id="pillars-g8h7">
+              <div data-id="94" class="pillar"></div>
+              <div data-id="95" class="pillar"></div>
+              <div data-id="96" class="pillar"></div>
+              <div data-id="97" class="pillar"></div>
+              <div data-id="98" class="pillar"></div>
+              <div data-id="99" class="pillar"></div>
+              <div data-id="100" class="pillar"></div>
+            </div>
+            <!-- Windows -->
+            <div data-id="101" class="window-row" id="window-row-i0j9">
+              <div data-id="102" class="bldg-window"></div>
+              <div data-id="103" class="bldg-window"></div>
+              <div data-id="104" class="bldg-window lit"></div>
+              <div data-id="105" class="bldg-window lit"></div>
+              <div data-id="106" class="bldg-window lit"></div>
+              <div data-id="107" class="bldg-window"></div>
+              <div data-id="108" class="bldg-window"></div>
+            </div>
+            <!-- Showroom glass -->
+            <div data-id="109" class="showroom-glass" id="showroom-glass-k2l1"></div>
+            <!-- Sign -->
+            <div data-id="110" class="building-sign-text" id="bldg-sign-m4n3">LUXURY AUTOMAXX &nbsp;•&nbsp; TINLEY PARK</div>
+            <!-- Parking lot -->
+            <div data-id="111" class="parking-lot" id="parking-lot-o6p5">
+              <div data-id="112" class="parking-lines">
+                <div data-id="113" class="parking-line"></div>
+                <div data-id="114" class="parking-line"></div>
+                <div data-id="115" class="parking-line"></div>
+                <div data-id="116" class="parking-line"></div>
+                <div data-id="117" class="parking-line"></div>
+                <div data-id="118" class="parking-line"></div>
+                <div data-id="119" class="parking-line"></div>
+              </div>
+            </div>
+            <!-- Cars -->
+            <div data-id="120" class="cars-row" id="cars-row-q8r7">
+              <div data-id="121" class="car-slot"><span data-id="122" class="car-emoji">🏎️</span><div data-id="123" class="car-shadow"></div></div>
+              <div data-id="124" class="car-slot"><span data-id="125" class="car-emoji" style="filter:hue-rotate(180deg) brightness(1.2)">🚗</span><div data-id="126" class="car-shadow"></div></div>
+              <div data-id="127" class="car-slot"><span data-id="128" class="car-emoji">🏎️</span><div data-id="129" class="car-shadow"></div></div>
+              <div data-id="130" class="car-slot"><span data-id="131" class="car-emoji center-car">🚙</span><div data-id="132" class="car-shadow center"></div></div>
+              <div data-id="133" class="car-slot"><span data-id="134" class="car-emoji">🏎️</span><div data-id="135" class="car-shadow"></div></div>
+              <div data-id="136" class="car-slot"><span data-id="137" class="car-emoji" style="filter:brightness(1.5)">🚗</span><div data-id="138" class="car-shadow"></div></div>
+              <div data-id="139" class="car-slot"><span data-id="140" class="car-emoji">🏎️</span><div data-id="141" class="car-shadow"></div></div>
+            </div>
           </div>
         </div>
-        <div data-id="92" class="building-sign">LUXURY AUTOMAXX</div>
-        <div data-id="93" class="building-cars">
-          <span data-id="94">🏎️</span><span data-id="95" style="filter:brightness(1.5)">🚗</span><span data-id="96">🏎️</span><span data-id="97">🚙</span><span data-id="98">🏎️</span>
-        </div>
       </div>
-      <h1 data-id="99" class="font-display text-4xl md:text-7xl font-bold gold-text gold-glow tracking-wider" id="hero-title-g9h0">LUXURY AUTOMAXX</h1>
-      <p data-id="100" class="text-gold-400/70 text-sm md:text-lg tracking-[0.4em] mt-2 font-body" id="hero-sub-i1j2" style="font-variant:small-caps;">• tinley park •</p>
-      <p data-id="101" class="text-gray-300 text-sm md:text-base mt-4 max-w-xl mx-auto font-light" id="hero-desc-k3l4">Where luxury meets affordability. Chicagoland's premier pre-owned luxury vehicle destination.</p>
-      <!-- CTA Buttons -->
-      <div data-id="102" class="flex flex-wrap justify-center gap-3 mt-8" id="hero-ctas-m5n6">
-        <button data-id="103" class="btn-gold px-5 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 min-h-[44px]" data-page="inventory">
-          <i data-id="104" data-lucide="car" class="w-4 h-4"></i> View Inventory
-        </button>
-        <button data-id="105" class="btn-outline-gold px-5 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 min-h-[44px]" data-page="portal">
-          <i data-id="106" data-lucide="video" class="w-4 h-4"></i> Virtual Appointment
-        </button>
-        <button data-id="107" class="btn-outline-gold px-5 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 min-h-[44px]" data-page="portal">
-          <i data-id="108" data-lucide="calendar" class="w-4 h-4"></i> Book Test Drive
-        </button>
-        <button data-id="109" class="btn-gold px-5 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 min-h-[44px]" data-page="financing">
-          <i data-id="110" data-lucide="shield-check" class="w-4 h-4"></i> Get Approved
-        </button>
-      </div>
+    </div>
+
+    <!-- CTA Buttons -->
+    <div data-id="142" class="hero-cta-row" id="hero-ctas-m5n6" style="background:linear-gradient(180deg,transparent,rgba(10,10,10,0.8));">
+      <button data-id="143" class="cta-pill cta-pill-gold" data-page="inventory">
+        <i data-id="144" data-lucide="car" class="w-4 h-4"></i> View Inventory
+      </button>
+      <button data-id="145" class="cta-pill cta-pill-outline" data-page="portal">
+        <i data-id="146" data-lucide="video" class="w-4 h-4"></i> Schedule a Virtual Appointment
+      </button>
+      <button data-id="147" class="cta-pill cta-pill-outline" data-page="portal">
+        <i data-id="148" data-lucide="calendar" class="w-4 h-4"></i> Book a Test Drive
+      </button>
+      <button data-id="149" class="cta-pill cta-pill-outline" data-page="financing">
+        <i data-id="150" data-lucide="shield-check" class="w-4 h-4"></i> Get Approved or View Your Status
+      </button>
+    </div>
+
+    <!-- BSTF Banner -->
+    <div data-id="151" class="bstf-banner" id="bstf-hero-banner-s1t0">
+      <p data-id="152">BUY &nbsp;• &nbsp;SELL &nbsp;• &nbsp;TRADE &nbsp;• &nbsp;FINANCE</p>
     </div>
   </div>
 
   <!-- STATS BAR -->
-  <div data-id="111" class="stats-bar py-6 md:py-8" id="stats-bar-o7p8">
-    <div data-id="112" class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div data-id="113" class="scroll-reveal">
-        <p data-id="114" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">500+</p>
-        <p data-id="115" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">VEHICLES SOLD</p>
+  <div data-id="153" class="stats-bar py-6 md:py-8" id="stats-bar-o7p8">
+    <div data-id="154" class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div data-id="155" class="scroll-reveal">
+        <p data-id="156" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">500+</p>
+        <p data-id="157" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">VEHICLES SOLD</p>
       </div>
-      <div data-id="116" class="scroll-reveal">
-        <p data-id="117" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">15+</p>
-        <p data-id="118" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">YEARS EXPERIENCE</p>
+      <div data-id="158" class="scroll-reveal">
+        <p data-id="159" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">15+</p>
+        <p data-id="160" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">YEARS EXPERIENCE</p>
       </div>
-      <div data-id="119" class="scroll-reveal">
-        <p data-id="120" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">5,000+</p>
-        <p data-id="121" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">HAPPY CLIENTS</p>
+      <div data-id="161" class="scroll-reveal">
+        <p data-id="162" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">5,000+</p>
+        <p data-id="163" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">HAPPY CLIENTS</p>
       </div>
-      <div data-id="122" class="scroll-reveal">
-        <p data-id="123" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">4.9★</p>
-        <p data-id="124" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">GOOGLE RATING</p>
+      <div data-id="164" class="scroll-reveal">
+        <p data-id="165" class="text-2xl md:text-4xl font-bold gold-text font-display tabular-nums">4.9★</p>
+        <p data-id="166" class="text-xs md:text-sm text-gray-400 mt-1 tracking-wider">GOOGLE RATING</p>
       </div>
     </div>
   </div>
 
   <!-- FEATURED VEHICLES -->
-  <section data-id="125" class="py-16 md:py-24 px-4" id="featured-section-q9r0">
-    <div data-id="126" class="max-w-7xl mx-auto">
-      <div data-id="127" class="text-center mb-12 scroll-reveal">
-        <p data-id="128" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">CURATED COLLECTION</p>
-        <h2 data-id="129" class="font-display text-3xl md:text-5xl gold-text font-bold">Featured Vehicles</h2>
-        <div data-id="130" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+  <section data-id="167" class="py-16 md:py-24 px-4" id="featured-section-q9r0">
+    <div data-id="168" class="max-w-7xl mx-auto">
+      <div data-id="169" class="text-center mb-12 scroll-reveal">
+        <p data-id="170" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">CURATED COLLECTION</p>
+        <h2 data-id="171" class="font-display text-3xl md:text-5xl gold-text font-bold">Featured Vehicles</h2>
+        <div data-id="172" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
       </div>
-      <div data-id="131" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-grid-s1t2">
-        <!-- Card 1: Porsche 911 -->
-        <div data-id="132" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="0">
-          <div data-id="133" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="134" src="https://ts4.mm.bing.net/th?id=OIP.1uDPTlMBMrwbxPmFylZcWwHaEK&pid=15.1&o=7&rm=3" alt="Porsche 911 Turbo" class="w-full h-full object-cover rounded-t-xl" />
+      <div data-id="173" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="featured-grid-s1t2">
+        <div data-id="174" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="0">
+          <div data-id="175" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="176" src="https://ts4.mm.bing.net/th?id=OIP.1uDPTlMBMrwbxPmFylZcWwHaEK&pid=15.1&o=7&rm=3" alt="Porsche 911 Turbo" class="w-full h-full object-cover rounded-t-xl" />
           </div>
-          <div data-id="135" class="p-5">
-            <div data-id="136" class="flex justify-between items-start mb-2">
-              <div data-id="137"><p data-id="138" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="139" class="font-display text-xl font-bold">Porsche 911 Turbo S</h3></div>
-              <span data-id="140" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SPORT</span>
+          <div data-id="177" class="p-5">
+            <div data-id="178" class="flex justify-between items-start mb-2">
+              <div data-id="179"><p data-id="180" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="181" class="font-display text-xl font-bold">Porsche 911 Turbo S</h3></div>
+              <span data-id="182" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SPORT</span>
             </div>
-            <div data-id="141" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="142" class="tabular-nums">8,200 mi</span>
-              <span data-id="143">•</span>
-              <span data-id="144">AWD</span>
-              <span data-id="145">•</span>
-              <span data-id="146">Twin Turbo</span>
+            <div data-id="183" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="184" class="tabular-nums">8,200 mi</span>
+              <span data-id="185">•</span>
+              <span data-id="186">AWD</span>
+              <span data-id="187">•</span>
+              <span data-id="188">Twin Turbo</span>
             </div>
-            <div data-id="147" class="flex justify-between items-center">
-              <span data-id="148" class="text-xl font-bold gold-text tabular-nums">$189,900</span>
-              <button data-id="149" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="0">View Details</button>
-            </div>
-          </div>
-        </div>
-        <!-- Card 2: Mercedes S580 -->
-        <div data-id="150" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="1">
-          <div data-id="151" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="152" src="https://ts4.mm.bing.net/th?id=OIP.TS9KgV7mhW9x38U2MgbtUQHaHa&pid=15.1&o=7&rm=3" alt="Mercedes S580" class="w-full h-full object-cover rounded-t-xl" />
-          </div>
-          <div data-id="153" class="p-5">
-            <div data-id="154" class="flex justify-between items-start mb-2">
-              <div data-id="155"><p data-id="156" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="157" class="font-display text-xl font-bold">Mercedes-Benz S580</h3></div>
-              <span data-id="158" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SEDAN</span>
-            </div>
-            <div data-id="159" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="160" class="tabular-nums">5,100 mi</span>
-              <span data-id="161">•</span>
-              <span data-id="162">4MATIC</span>
-              <span data-id="163">•</span>
-              <span data-id="164">V8</span>
-            </div>
-            <div data-id="165" class="flex justify-between items-center">
-              <span data-id="166" class="text-xl font-bold gold-text tabular-nums">$142,500</span>
-              <button data-id="167" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="1">View Details</button>
+            <div data-id="189" class="flex justify-between items-center">
+              <span data-id="190" class="text-xl font-bold gold-text tabular-nums">$189,900</span>
+              <button data-id="191" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="0">View Details</button>
             </div>
           </div>
         </div>
-        <!-- Card 3: BMW M8 -->
-        <div data-id="168" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="2">
-          <div data-id="169" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="170" src="https://ts1.mm.bing.net/th?id=OIP.vjk2ffc6jurUhfJGFFL0_QHaEK&pid=15.1&o=7&rm=3" alt="BMW M8 Gran Coupe" class="w-full h-full object-cover rounded-t-xl" />
+        <div data-id="192" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="1">
+          <div data-id="193" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="194" src="https://ts4.mm.bing.net/th?id=OIP.TS9KgV7mhW9x38U2MgbtUQHaHa&pid=15.1&o=7&rm=3" alt="Mercedes S580" class="w-full h-full object-cover rounded-t-xl" />
           </div>
-          <div data-id="171" class="p-5">
-            <div data-id="172" class="flex justify-between items-start mb-2">
-              <div data-id="173"><p data-id="174" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="175" class="font-display text-xl font-bold">BMW M8 Competition</h3></div>
-              <span data-id="176" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">COUPE</span>
+          <div data-id="195" class="p-5">
+            <div data-id="196" class="flex justify-between items-start mb-2">
+              <div data-id="197"><p data-id="198" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="199" class="font-display text-xl font-bold">Mercedes-Benz S580</h3></div>
+              <span data-id="200" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SEDAN</span>
             </div>
-            <div data-id="177" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="178" class="tabular-nums">11,300 mi</span>
-              <span data-id="179">•</span>
-              <span data-id="180">RWD</span>
-              <span data-id="181">•</span>
-              <span data-id="182">V8 Twin Turbo</span>
+            <div data-id="201" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="202" class="tabular-nums">5,100 mi</span>
+              <span data-id="203">•</span>
+              <span data-id="204">4MATIC</span>
+              <span data-id="205">•</span>
+              <span data-id="206">V8</span>
             </div>
-            <div data-id="183" class="flex justify-between items-center">
-              <span data-id="184" class="text-xl font-bold gold-text tabular-nums">$124,900</span>
-              <button data-id="185" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="2">View Details</button>
-            </div>
-          </div>
-        </div>
-        <!-- Card 4: Bentley GT -->
-        <div data-id="186" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="3">
-          <div data-id="187" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="188" src="https://ts3.mm.bing.net/th?id=OIP.14WYsFvl9Pip2so3-ergSwHaEK&pid=15.1&o=7&rm=3" alt="Bentley Continental GT" class="w-full h-full object-cover rounded-t-xl" />
-          </div>
-          <div data-id="189" class="p-5">
-            <div data-id="190" class="flex justify-between items-start mb-2">
-              <div data-id="191"><p data-id="192" class="text-gold-400/50 text-xs tracking-widest">2023</p><h3 data-id="193" class="font-display text-xl font-bold">Bentley Continental GT</h3></div>
-              <span data-id="194" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">GRAND TOURER</span>
-            </div>
-            <div data-id="195" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="196" class="tabular-nums">3,800 mi</span>
-              <span data-id="197">•</span>
-              <span data-id="198">AWD</span>
-              <span data-id="199">•</span>
-              <span data-id="200">W12</span>
-            </div>
-            <div data-id="201" class="flex justify-between items-center">
-              <span data-id="202" class="text-xl font-bold gold-text tabular-nums">$234,900</span>
-              <button data-id="203" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="3">View Details</button>
+            <div data-id="207" class="flex justify-between items-center">
+              <span data-id="208" class="text-xl font-bold gold-text tabular-nums">$142,500</span>
+              <button data-id="209" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="1">View Details</button>
             </div>
           </div>
         </div>
-        <!-- Card 5: Audi RS7 -->
-        <div data-id="204" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="4">
-          <div data-id="205" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="206" src="https://ts3.mm.bing.net/th?id=OIP.mZswm2ueB2hxa8y0-tDifgHaHa&pid=15.1&o=7&rm=3" alt="Audi RS7 Sportback" class="w-full h-full object-cover rounded-t-xl" />
+        <div data-id="210" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="2">
+          <div data-id="211" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="212" src="https://ts1.mm.bing.net/th?id=OIP.vjk2ffc6jurUhfJGFFL0_QHaEK&pid=15.1&o=7&rm=3" alt="BMW M8 Gran Coupe" class="w-full h-full object-cover rounded-t-xl" />
           </div>
-          <div data-id="207" class="p-5">
-            <div data-id="208" class="flex justify-between items-start mb-2">
-              <div data-id="209"><p data-id="210" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="211" class="font-display text-xl font-bold">Audi RS7 Sportback</h3></div>
-              <span data-id="212" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SPORTBACK</span>
+          <div data-id="213" class="p-5">
+            <div data-id="214" class="flex justify-between items-start mb-2">
+              <div data-id="215"><p data-id="216" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="217" class="font-display text-xl font-bold">BMW M8 Competition</h3></div>
+              <span data-id="218" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">COUPE</span>
             </div>
-            <div data-id="213" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="214" class="tabular-nums">6,700 mi</span>
-              <span data-id="215">•</span>
-              <span data-id="216">Quattro</span>
-              <span data-id="217">•</span>
-              <span data-id="218">V8 TT</span>
+            <div data-id="219" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="220" class="tabular-nums">11,300 mi</span>
+              <span data-id="221">•</span>
+              <span data-id="222">RWD</span>
+              <span data-id="223">•</span>
+              <span data-id="224">V8 Twin Turbo</span>
             </div>
-            <div data-id="219" class="flex justify-between items-center">
-              <span data-id="220" class="text-xl font-bold gold-text tabular-nums">$119,500</span>
-              <button data-id="221" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="4">View Details</button>
+            <div data-id="225" class="flex justify-between items-center">
+              <span data-id="226" class="text-xl font-bold gold-text tabular-nums">$124,900</span>
+              <button data-id="227" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="2">View Details</button>
             </div>
           </div>
         </div>
-        <!-- Card 6: Lamborghini Huracan -->
-        <div data-id="222" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="5">
-          <div data-id="223" class="vehicle-platform p-6 flex items-center justify-center h-48">
-            <img data-id="224" src="https://ts2.mm.bing.net/th?id=OIP.muinIZB-L3gPkfX2AxoUaAHaEK&pid=15.1&o=7&rm=3" alt="Lamborghini Huracan" class="w-full h-full object-cover rounded-t-xl" />
+        <div data-id="228" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="3">
+          <div data-id="229" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="230" src="https://ts3.mm.bing.net/th?id=OIP.14WYsFvl9Pip2so3-ergSwHaEK&pid=15.1&o=7&rm=3" alt="Bentley Continental GT" class="w-full h-full object-cover rounded-t-xl" />
           </div>
-          <div data-id="225" class="p-5">
-            <div data-id="226" class="flex justify-between items-start mb-2">
-              <div data-id="227"><p data-id="228" class="text-gold-400/50 text-xs tracking-widest">2023</p><h3 data-id="229" class="font-display text-xl font-bold">Lamborghini Huracán</h3></div>
-              <span data-id="230" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SUPERCAR</span>
+          <div data-id="231" class="p-5">
+            <div data-id="232" class="flex justify-between items-start mb-2">
+              <div data-id="233"><p data-id="234" class="text-gold-400/50 text-xs tracking-widest">2023</p><h3 data-id="235" class="font-display text-xl font-bold">Bentley Continental GT</h3></div>
+              <span data-id="236" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">GRAND TOURER</span>
             </div>
-            <div data-id="231" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
-              <span data-id="232" class="tabular-nums">2,100 mi</span>
-              <span data-id="233">•</span>
-              <span data-id="234">AWD</span>
-              <span data-id="235">•</span>
-              <span data-id="236">V10</span>
+            <div data-id="237" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="238" class="tabular-nums">3,800 mi</span>
+              <span data-id="239">•</span>
+              <span data-id="240">AWD</span>
+              <span data-id="241">•</span>
+              <span data-id="242">W12</span>
             </div>
-            <div data-id="237" class="flex justify-between items-center">
-              <span data-id="238" class="text-xl font-bold gold-text tabular-nums">$279,900</span>
-              <button data-id="239" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="5">View Details</button>
+            <div data-id="243" class="flex justify-between items-center">
+              <span data-id="244" class="text-xl font-bold gold-text tabular-nums">$234,900</span>
+              <button data-id="245" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="3">View Details</button>
+            </div>
+          </div>
+        </div>
+        <div data-id="246" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="4">
+          <div data-id="247" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="248" src="https://ts3.mm.bing.net/th?id=OIP.mZswm2ueB2hxa8y0-tDifgHaHa&pid=15.1&o=7&rm=3" alt="Audi RS7 Sportback" class="w-full h-full object-cover rounded-t-xl" />
+          </div>
+          <div data-id="249" class="p-5">
+            <div data-id="250" class="flex justify-between items-start mb-2">
+              <div data-id="251"><p data-id="252" class="text-gold-400/50 text-xs tracking-widest">2024</p><h3 data-id="253" class="font-display text-xl font-bold">Audi RS7 Sportback</h3></div>
+              <span data-id="254" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SPORTBACK</span>
+            </div>
+            <div data-id="255" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="256" class="tabular-nums">6,700 mi</span>
+              <span data-id="257">•</span>
+              <span data-id="258">Quattro</span>
+              <span data-id="259">•</span>
+              <span data-id="260">V8 TT</span>
+            </div>
+            <div data-id="261" class="flex justify-between items-center">
+              <span data-id="262" class="text-xl font-bold gold-text tabular-nums">$119,500</span>
+              <button data-id="263" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="4">View Details</button>
+            </div>
+          </div>
+        </div>
+        <div data-id="264" class="vehicle-card card-hover scroll-reveal" data-vehicle-id="5">
+          <div data-id="265" class="vehicle-platform p-6 flex items-center justify-center h-48">
+            <img data-id="266" src="https://ts2.mm.bing.net/th?id=OIP.muinIZB-L3gPkfX2AxoUaAHaEK&pid=15.1&o=7&rm=3" alt="Lamborghini Huracan" class="w-full h-full object-cover rounded-t-xl" />
+          </div>
+          <div data-id="267" class="p-5">
+            <div data-id="268" class="flex justify-between items-start mb-2">
+              <div data-id="269"><p data-id="270" class="text-gold-400/50 text-xs tracking-widest">2023</p><h3 data-id="271" class="font-display text-xl font-bold">Lamborghini Huracán</h3></div>
+              <span data-id="272" class="bg-gold-400/10 text-gold-400 text-[10px] px-2 py-1 rounded-full tracking-wider">SUPERCAR</span>
+            </div>
+            <div data-id="273" class="flex items-center gap-4 text-sm text-gray-400 mb-3">
+              <span data-id="274" class="tabular-nums">2,100 mi</span>
+              <span data-id="275">•</span>
+              <span data-id="276">AWD</span>
+              <span data-id="277">•</span>
+              <span data-id="278">V10</span>
+            </div>
+            <div data-id="279" class="flex justify-between items-center">
+              <span data-id="280" class="text-xl font-bold gold-text tabular-nums">$279,900</span>
+              <button data-id="281" class="btn-outline-gold px-4 py-2 rounded-lg text-xs view-details-btn" data-vehicle-id="5">View Details</button>
             </div>
           </div>
         </div>
       </div>
-      <div data-id="240" class="text-center mt-10">
-        <button data-id="241" class="btn-gold px-8 py-4 rounded-xl text-sm tracking-wider" data-page="inventory" id="view-all-btn-u3v4">VIEW ALL INVENTORY <i data-id="242" data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i></button>
+      <div data-id="282" class="text-center mt-10">
+        <button data-id="283" class="btn-gold px-8 py-4 rounded-xl text-sm tracking-wider" data-page="inventory" id="view-all-btn-u3v4">VIEW ALL INVENTORY <i data-id="284" data-lucide="arrow-right" class="w-4 h-4 inline ml-1"></i></button>
       </div>
     </div>
   </section>
 
   <!-- WHY CHOOSE US -->
-  <section data-id="243" class="py-16 md:py-24 px-4" id="why-us-section-w5x6" style="background:linear-gradient(180deg,#0a0a0a,#0f1118,#0a0a0a)">
-    <div data-id="244" class="max-w-7xl mx-auto">
-      <div data-id="245" class="text-center mb-12 scroll-reveal">
-        <p data-id="246" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">THE LUXURY AUTOMAXX DIFFERENCE</p>
-        <h2 data-id="247" class="font-display text-3xl md:text-5xl gold-text font-bold">Why Choose Us</h2>
-        <div data-id="248" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+  <section data-id="285" class="py-16 md:py-24 px-4" id="why-us-section-w5x6" style="background:linear-gradient(180deg,#0a0a0a,#0f1118,#0a0a0a)">
+    <div data-id="286" class="max-w-7xl mx-auto">
+      <div data-id="287" class="text-center mb-12 scroll-reveal">
+        <p data-id="288" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">THE LUXURY AUTOMAXX DIFFERENCE</p>
+        <h2 data-id="289" class="font-display text-3xl md:text-5xl gold-text font-bold">Why Choose Us</h2>
+        <div data-id="290" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
       </div>
-      <div data-id="249" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div data-id="250" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-1-y7z8">
-          <div data-id="251" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="252" data-lucide="search-check" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="253" class="font-display text-xl font-bold mb-2">150-Point Inspection</h3>
-          <p data-id="254" class="text-gray-400 text-sm">Every vehicle undergoes our rigorous multi-point inspection by certified technicians.</p>
+      <div data-id="291" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div data-id="292" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-1-y7z8">
+          <div data-id="293" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="294" data-lucide="search-check" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="295" class="font-display text-xl font-bold mb-2">150-Point Inspection</h3>
+          <p data-id="296" class="text-gray-400 text-sm">Every vehicle undergoes our rigorous multi-point inspection by certified technicians.</p>
         </div>
-        <div data-id="255" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-2-a1b2">
-          <div data-id="256" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="257" data-lucide="award" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="258" class="font-display text-xl font-bold mb-2">Certified Excellence</h3>
-          <p data-id="259" class="text-gray-400 text-sm">Factory-certified pre-owned vehicles with complete service history and documentation.</p>
+        <div data-id="297" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-2-a1b2">
+          <div data-id="298" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="299" data-lucide="award" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="300" class="font-display text-xl font-bold mb-2">Certified Excellence</h3>
+          <p data-id="301" class="text-gray-400 text-sm">Factory-certified pre-owned vehicles with complete service history and documentation.</p>
         </div>
-        <div data-id="260" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-3-c3d4">
-          <div data-id="261" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="262" data-lucide="landmark" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="263" class="font-display text-xl font-bold mb-2">Premium Financing</h3>
-          <p data-id="264" class="text-gray-400 text-sm">Competitive rates from 20+ lending partners. Get approved in minutes, not days.</p>
+        <div data-id="302" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-3-c3d4">
+          <div data-id="303" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="304" data-lucide="landmark" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="305" class="font-display text-xl font-bold mb-2">Premium Financing</h3>
+          <p data-id="306" class="text-gray-400 text-sm">Competitive rates from 20+ lending partners. Get approved in minutes, not days.</p>
         </div>
-        <div data-id="265" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-4-e5f6">
-          <div data-id="266" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="267" data-lucide="truck" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="268" class="font-display text-xl font-bold mb-2">Concierge Delivery</h3>
-          <p data-id="269" class="text-gray-400 text-sm">White-glove delivery service to your doorstep anywhere in the continental US.</p>
+        <div data-id="307" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-4-e5f6">
+          <div data-id="308" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="309" data-lucide="truck" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="310" class="font-display text-xl font-bold mb-2">Concierge Delivery</h3>
+          <p data-id="311" class="text-gray-400 text-sm">White-glove delivery service to your doorstep anywhere in the continental US.</p>
         </div>
-        <div data-id="270" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-5-g7h8">
-          <div data-id="271" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="272" data-lucide="eye" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="273" class="font-display text-xl font-bold mb-2">Transparent Pricing</h3>
-          <p data-id="274" class="text-gray-400 text-sm">No hidden fees, no surprises. Every price you see is the real price you pay.</p>
+        <div data-id="312" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-5-g7h8">
+          <div data-id="313" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="314" data-lucide="eye" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="315" class="font-display text-xl font-bold mb-2">Transparent Pricing</h3>
+          <p data-id="316" class="text-gray-400 text-sm">No hidden fees, no surprises. Every price you see is the real price you pay.</p>
         </div>
-        <div data-id="275" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-6-i9j0">
-          <div data-id="276" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="277" data-lucide="shield" class="w-8 h-8 text-gold-400"></i></div>
-          <h3 data-id="278" class="font-display text-xl font-bold mb-2">Lifetime Warranty</h3>
-          <p data-id="279" class="text-gray-400 text-sm">Drive with confidence knowing your investment is protected for as long as you own it.</p>
+        <div data-id="317" class="text-center p-8 rounded-2xl border border-gold-400/10 hover:border-gold-400/30 transition-all scroll-reveal card-hover" id="why-6-i9j0">
+          <div data-id="318" class="w-16 h-16 rounded-full bg-gold-400/10 flex items-center justify-center mx-auto mb-4"><i data-id="319" data-lucide="shield" class="w-8 h-8 text-gold-400"></i></div>
+          <h3 data-id="320" class="font-display text-xl font-bold mb-2">Lifetime Warranty</h3>
+          <p data-id="321" class="text-gray-400 text-sm">Drive with confidence knowing your investment is protected for as long as you own it.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section data-id="280" class="py-16 md:py-24 px-4" id="testimonials-section-k1l2">
-    <div data-id="281" class="max-w-5xl mx-auto">
-      <div data-id="282" class="text-center mb-12 scroll-reveal">
-        <p data-id="283" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">CLIENT TESTIMONIALS</p>
-        <h2 data-id="284" class="font-display text-3xl md:text-5xl gold-text font-bold">What Our Clients Say</h2>
-        <div data-id="285" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
+  <section data-id="322" class="py-16 md:py-24 px-4" id="testimonials-section-k1l2">
+    <div data-id="323" class="max-w-5xl mx-auto">
+      <div data-id="324" class="text-center mb-12 scroll-reveal">
+        <p data-id="325" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">CLIENT TESTIMONIALS</p>
+        <h2 data-id="326" class="font-display text-3xl md:text-5xl gold-text font-bold">What Our Clients Say</h2>
+        <div data-id="327" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
       </div>
-      <div data-id="286" id="testimonial-slider-m3n4" class="relative">
-        <div data-id="287" class="testimonial-card rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto scroll-reveal">
-          <div data-id="288" class="flex justify-center mb-4">
-            <span data-id="289" class="star text-xl">★ ★ ★ ★ ★</span>
+      <div data-id="328" id="testimonial-slider-m3n4" class="relative">
+        <div data-id="329" class="testimonial-card rounded-2xl p-8 md:p-12 text-center max-w-3xl mx-auto scroll-reveal">
+          <div data-id="330" class="flex justify-center mb-4">
+            <span data-id="331" class="star text-xl">★ ★ ★ ★ ★</span>
           </div>
-          <p data-id="290" id="testimonial-text-o5p6" class="text-lg md:text-xl text-gray-200 font-light italic leading-relaxed mb-6">"The experience at Luxury Automaxx was nothing short of extraordinary. From the moment I walked in, I felt like royalty. My new Porsche 911 is a dream come true."</p>
-          <div data-id="291">
-            <p data-id="292" id="testimonial-name-q7r8" class="font-display text-lg gold-text font-bold">Michael R.</p>
-            <p data-id="293" id="testimonial-car-s9t0" class="text-gray-400 text-sm">2024 Porsche 911 Turbo S</p>
+          <p data-id="332" id="testimonial-text-o5p6" class="text-lg md:text-xl text-gray-200 font-light italic leading-relaxed mb-6">"The experience at Luxury Automaxx was nothing short of extraordinary. From the moment I walked in, I felt like royalty. My new Porsche 911 is a dream come true."</p>
+          <div data-id="333">
+            <p data-id="334" id="testimonial-name-q7r8" class="font-display text-lg gold-text font-bold">Michael R.</p>
+            <p data-id="335" id="testimonial-car-s9t0" class="text-gray-400 text-sm">2024 Porsche 911 Turbo S</p>
           </div>
         </div>
-        <div data-id="294" class="flex justify-center gap-3 mt-8">
-          <button data-id="295" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400 cursor-pointer" data-index="0"></button>
-          <button data-id="296" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="1"></button>
-          <button data-id="297" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="2"></button>
-          <button data-id="298" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="3"></button>
+        <div data-id="336" class="flex justify-center gap-3 mt-8">
+          <button data-id="337" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400 cursor-pointer" data-index="0"></button>
+          <button data-id="338" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="1"></button>
+          <button data-id="339" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="2"></button>
+          <button data-id="340" class="testimonial-dot w-3 h-3 rounded-full bg-gold-400/30 cursor-pointer" data-index="3"></button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT BAR -->
-  <section data-id="299" class="py-12 px-4 border-t border-gold-400/10" id="contact-bar-u1v2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
-    <div data-id="300" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div data-id="301" class="flex items-start gap-3 scroll-reveal">
-        <div data-id="302" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="303" data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i></div>
-        <div data-id="304"><p data-id="305" class="text-xs text-gold-400/60 tracking-wider mb-1">ADDRESS</p><p data-id="306" class="text-sm">17043 Oak Park Ave<br data-id="307">Tinley Park, IL 60477</p></div>
+  <section data-id="341" class="py-12 px-4 border-t border-gold-400/10" id="contact-bar-u1v2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
+    <div data-id="342" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div data-id="343" class="flex items-start gap-3 scroll-reveal">
+        <div data-id="344" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="345" data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i></div>
+        <div data-id="346"><p data-id="347" class="text-xs text-gold-400/60 tracking-wider mb-1">ADDRESS</p><p data-id="348" class="text-sm">17043 Oak Park Ave<br data-id="349">Tinley Park, IL 60477</p></div>
       </div>
-      <div data-id="308" class="flex items-start gap-3 scroll-reveal">
-        <div data-id="309" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="310" data-lucide="phone" class="w-5 h-5 text-gold-400"></i></div>
-        <div data-id="311"><p data-id="312" class="text-xs text-gold-400/60 tracking-wider mb-1">PHONE</p><p data-id="313" class="text-sm">(708) 555-LUXE<br data-id="314">(708) 555-5893</p></div>
+      <div data-id="350" class="flex items-start gap-3 scroll-reveal">
+        <div data-id="351" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="352" data-lucide="phone" class="w-5 h-5 text-gold-400"></i></div>
+        <div data-id="353"><p data-id="354" class="text-xs text-gold-400/60 tracking-wider mb-1">PHONE</p><p data-id="355" class="text-sm">(708) 555-LUXE<br data-id="356">(708) 555-5893</p></div>
       </div>
-      <div data-id="315" class="flex items-start gap-3 scroll-reveal">
-        <div data-id="316" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="317" data-lucide="clock" class="w-5 h-5 text-gold-400"></i></div>
-        <div data-id="318"><p data-id="319" class="text-xs text-gold-400/60 tracking-wider mb-1">HOURS</p><p data-id="320" class="text-sm">Mon–Sat: 9 AM – 8 PM<br data-id="321">Sun: 10 AM – 5 PM</p></div>
+      <div data-id="357" class="flex items-start gap-3 scroll-reveal">
+        <div data-id="358" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="359" data-lucide="clock" class="w-5 h-5 text-gold-400"></i></div>
+        <div data-id="360"><p data-id="361" class="text-xs text-gold-400/60 tracking-wider mb-1">HOURS</p><p data-id="362" class="text-sm">Mon–Sat: 9 AM – 8 PM<br data-id="363">Sun: 10 AM – 5 PM</p></div>
       </div>
-      <div data-id="322" class="flex items-start gap-3 scroll-reveal">
-        <div data-id="323" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="324" data-lucide="mail" class="w-5 h-5 text-gold-400"></i></div>
-        <div data-id="325"><p data-id="326" class="text-xs text-gold-400/60 tracking-wider mb-1">EMAIL</p><p data-id="327" class="text-sm">info@luxuryautomaxx.com<br data-id="328">sales@luxuryautomaxx.com</p></div>
+      <div data-id="364" class="flex items-start gap-3 scroll-reveal">
+        <div data-id="365" class="w-10 h-10 rounded-full bg-gold-400/10 flex items-center justify-center flex-shrink-0"><i data-id="366" data-lucide="mail" class="w-5 h-5 text-gold-400"></i></div>
+        <div data-id="367"><p data-id="368" class="text-xs text-gold-400/60 tracking-wider mb-1">EMAIL</p><p data-id="369" class="text-sm">info@luxuryautomaxx.com<br data-id="370">sales@luxuryautomaxx.com</p></div>
       </div>
     </div>
   </section>
@@ -551,699 +702,449 @@ h1,h2,h3,h4,h5,h6 { font-family:'Playfair Display',serif; }
 <!-- ============================================================ -->
 <!-- PAGE 2: INVENTORY -->
 <!-- ============================================================ -->
-<section data-id="329" id="page-inventory" class="page-section">
-
-  <!-- Inventory Hero -->
-  <div data-id="330" class="split-hero flex items-center justify-center" style="min-height:45vh">
-    <div data-id="331" class="split-line hidden md:block"></div>
-    <div data-id="332" class="hero-content text-center px-4 py-20">
-      <p data-id="333" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
-      <h1 data-id="334" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="inv-hero-title-w3x4">INVENTORY</h1>
-      <p data-id="335" class="text-gray-300 text-sm md:text-base mt-3 max-w-xl mx-auto font-light">Explore our curated collection of premium pre-owned luxury vehicles.</p>
+<section data-id="371" id="page-inventory" class="page-section">
+  <div data-id="372" class="split-hero flex items-center justify-center" style="min-height:45vh">
+    <div data-id="373" class="split-line hidden md:block"></div>
+    <div data-id="374" class="hero-content text-center px-4 py-20">
+      <p data-id="375" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
+      <h1 data-id="376" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="inv-hero-title-w3x4">INVENTORY</h1>
+      <p data-id="377" class="text-gray-300 text-sm md:text-base mt-3 max-w-xl mx-auto font-light">Explore our curated collection of premium pre-owned luxury vehicles.</p>
     </div>
   </div>
-
-  <!-- Filters -->
-  <div data-id="336" class="py-6 px-4 border-b border-gold-400/10 sticky top-16 md:top-20 z-30" style="background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);" id="inv-filters-y5z6">
-    <div data-id="337" class="max-w-7xl mx-auto">
-      <div data-id="338" class="flex flex-col md:flex-row items-stretch md:items-center gap-3">
-        <div data-id="339" class="relative flex-1">
-          <i data-id="340" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gold-400/50"></i>
-          <input data-id="341" type="text" id="inv-search-a7b8" placeholder="Search make, model, year..." class="form-input w-full pl-10 pr-4 py-3 rounded-xl text-sm" />
+  <div data-id="378" class="py-6 px-4 border-b border-gold-400/10 sticky top-16 md:top-20 z-30" style="background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);" id="inv-filters-y5z6">
+    <div data-id="379" class="max-w-7xl mx-auto">
+      <div data-id="380" class="flex flex-col md:flex-row items-stretch md:items-center gap-3">
+        <div data-id="381" class="relative flex-1">
+          <i data-id="382" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gold-400/50"></i>
+          <input data-id="383" type="text" id="inv-search-a7b8" placeholder="Search make, model, year..." class="form-input w-full pl-10 pr-4 py-3 rounded-xl text-sm" />
         </div>
-        <select data-id="342" id="inv-price-filter-c9d0" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
-          <option data-id="343" value="">Price ▼</option>
-          <option data-id="344" value="50000">Under $50K</option>
-          <option data-id="345" value="100000">Under $100K</option>
-          <option data-id="346" value="150000">Under $150K</option>
-          <option data-id="347" value="200000">Under $200K</option>
-          <option data-id="348" value="999999">$200K+</option>
+        <select data-id="384" id="inv-price-filter-c9d0" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
+          <option data-id="385" value="">Price ▼</option>
+          <option data-id="386" value="50000">Under $50K</option>
+          <option data-id="387" value="100000">Under $100K</option>
+          <option data-id="388" value="150000">Under $150K</option>
+          <option data-id="389" value="200000">Under $200K</option>
+          <option data-id="390" value="999999">$200K+</option>
         </select>
-        <select data-id="349" id="inv-year-filter-e1f2" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
-          <option data-id="350" value="">Year ▼</option>
-          <option data-id="351" value="2024">2024</option>
-          <option data-id="352" value="2023">2023</option>
-          <option data-id="353" value="2022">2022</option>
+        <select data-id="391" id="inv-year-filter-e1f2" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
+          <option data-id="392" value="">Year ▼</option>
+          <option data-id="393" value="2024">2024</option>
+          <option data-id="394" value="2023">2023</option>
+          <option data-id="395" value="2022">2022</option>
         </select>
-        <select data-id="354" id="inv-type-filter-g3h4" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
-          <option data-id="355" value="">Type ▼</option>
-          <option data-id="356" value="Sedan">Sedan</option>
-          <option data-id="357" value="SUV">SUV</option>
-          <option data-id="358" value="Coupe">Coupe</option>
-          <option data-id="359" value="Sport">Sport</option>
-          <option data-id="360" value="Convertible">Convertible</option>
+        <select data-id="396" id="inv-type-filter-g3h4" class="filter-select px-4 py-3 rounded-xl text-sm cursor-pointer">
+          <option data-id="397" value="">Type ▼</option>
+          <option data-id="398" value="Sedan">Sedan</option>
+          <option data-id="399" value="SUV">SUV</option>
+          <option data-id="400" value="Coupe">Coupe</option>
+          <option data-id="401" value="Sport">Sport</option>
+          <option data-id="402" value="Convertible">Convertible</option>
         </select>
-        <div data-id="361" class="flex gap-2">
-          <button data-id="362" id="inv-grid-btn-i5j6" class="p-3 rounded-xl border border-gold-400/30 text-gold-400 cursor-pointer" title="Grid View"><i data-id="363" data-lucide="layout-grid" class="w-4 h-4"></i></button>
-          <button data-id="364" id="inv-list-btn-k7l8" class="p-3 rounded-xl border border-gold-400/10 text-gray-500 cursor-pointer" title="List View"><i data-id="365" data-lucide="list" class="w-4 h-4"></i></button>
+        <div data-id="403" class="flex gap-2">
+          <button data-id="404" id="inv-grid-btn-i5j6" class="p-3 rounded-xl border border-gold-400/30 text-gold-400 cursor-pointer" title="Grid View"><i data-id="405" data-lucide="layout-grid" class="w-4 h-4"></i></button>
+          <button data-id="406" id="inv-list-btn-k7l8" class="p-3 rounded-xl border border-gold-400/10 text-gray-500 cursor-pointer" title="List View"><i data-id="407" data-lucide="list" class="w-4 h-4"></i></button>
         </div>
       </div>
-      <div data-id="366" class="flex justify-between items-center mt-3">
-        <p data-id="367" id="inv-count-m9n0" class="text-xs text-gray-500 tabular-nums">Showing 18 vehicles</p>
-        <div data-id="368" class="flex gap-2" id="inv-pagination-o1p2"></div>
+      <div data-id="408" class="flex justify-between items-center mt-3">
+        <p data-id="409" id="inv-count-m9n0" class="text-xs text-gray-500 tabular-nums">Showing 18 vehicles</p>
+        <div data-id="410" class="flex gap-2" id="inv-pagination-o1p2"></div>
       </div>
     </div>
   </div>
-
-  <!-- Inventory Grid -->
-  <div data-id="369" class="py-10 px-4" id="inv-grid-wrapper-q3r4">
-    <div data-id="370" class="max-w-7xl mx-auto">
-      <div data-id="371" id="inv-grid-s5t6" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered by JS -->
-      </div>
+  <div data-id="411" class="py-10 px-4" id="inv-grid-wrapper-q3r4">
+    <div data-id="412" class="max-w-7xl mx-auto">
+      <div data-id="413" id="inv-grid-s5t6" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </div>
   </div>
-
 </section>
 
 <!-- ============================================================ -->
 <!-- PAGE 3: FINANCING -->
 <!-- ============================================================ -->
-<section data-id="372" id="page-financing" class="page-section">
-
-  <!-- Financing Hero -->
-  <div data-id="373" class="split-hero flex items-center justify-center" style="min-height:45vh">
-    <div data-id="374" class="split-line hidden md:block"></div>
-    <div data-id="375" class="hero-content text-center px-4 py-20">
-      <p data-id="376" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
-      <h1 data-id="377" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="fin-hero-title-u7v8">FINANCING & APPROVAL</h1>
-      <p data-id="378" class="text-gray-300 text-sm md:text-base mt-3 max-w-xl mx-auto font-light">Get approved in minutes. Drive away in hours.</p>
+<section data-id="414" id="page-financing" class="page-section">
+  <div data-id="415" class="split-hero flex items-center justify-center" style="min-height:45vh">
+    <div data-id="416" class="split-line hidden md:block"></div>
+    <div data-id="417" class="hero-content text-center px-4 py-20">
+      <p data-id="418" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
+      <h1 data-id="419" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="fin-hero-title-u7v8">FINANCING & APPROVAL</h1>
+      <p data-id="420" class="text-gray-300 text-sm md:text-base mt-3 max-w-xl mx-auto font-light">Get approved in minutes. Drive away in hours.</p>
     </div>
   </div>
-
-  <!-- Steps -->
-  <section data-id="379" class="py-12 px-4 border-b border-gold-400/10" id="fin-steps-w9x0">
-    <div data-id="380" class="max-w-4xl mx-auto">
-      <div data-id="381" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-        <div data-id="382" class="scroll-reveal">
-          <div data-id="383" class="w-14 h-14 rounded-full bg-gold-400 text-night-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">1</div>
-          <h4 data-id="384" class="font-display text-sm font-bold">Apply Online</h4>
-          <p data-id="385" class="text-xs text-gray-400 mt-1">60 seconds</p>
+  <section data-id="421" class="py-12 px-4 border-b border-gold-400/10" id="fin-steps-w9x0">
+    <div data-id="422" class="max-w-4xl mx-auto">
+      <div data-id="423" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div data-id="424" class="scroll-reveal">
+          <div data-id="425" class="w-14 h-14 rounded-full bg-gold-400 text-night-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">1</div>
+          <h4 data-id="426" class="font-display text-sm font-bold">Apply Online</h4>
+          <p data-id="427" class="text-xs text-gray-400 mt-1">60 seconds</p>
         </div>
-        <div data-id="386" class="scroll-reveal">
-          <div data-id="387" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">2</div>
-          <h4 data-id="388" class="font-display text-sm font-bold">Get Decision</h4>
-          <p data-id="389" class="text-xs text-gray-400 mt-1">Instant approval</p>
+        <div data-id="428" class="scroll-reveal">
+          <div data-id="429" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">2</div>
+          <h4 data-id="430" class="font-display text-sm font-bold">Get Decision</h4>
+          <p data-id="431" class="text-xs text-gray-400 mt-1">Instant approval</p>
         </div>
-        <div data-id="390" class="scroll-reveal">
-          <div data-id="391" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">3</div>
-          <h4 data-id="392" class="font-display text-sm font-bold">Choose Vehicle</h4>
-          <p data-id="393" class="text-xs text-gray-400 mt-1">500+ to choose</p>
+        <div data-id="432" class="scroll-reveal">
+          <div data-id="433" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">3</div>
+          <h4 data-id="434" class="font-display text-sm font-bold">Choose Vehicle</h4>
+          <p data-id="435" class="text-xs text-gray-400 mt-1">500+ to choose</p>
         </div>
-        <div data-id="394" class="scroll-reveal">
-          <div data-id="395" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">4</div>
-          <h4 data-id="396" class="font-display text-sm font-bold">Drive Away</h4>
-          <p data-id="397" class="text-xs text-gray-400 mt-1">Same day</p>
+        <div data-id="436" class="scroll-reveal">
+          <div data-id="437" class="w-14 h-14 rounded-full border-2 border-gold-400 text-gold-400 flex items-center justify-center mx-auto mb-3 font-bold text-lg">4</div>
+          <h4 data-id="438" class="font-display text-sm font-bold">Drive Away</h4>
+          <p data-id="439" class="text-xs text-gray-400 mt-1">Same day</p>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Application + Calculator -->
-  <section data-id="398" class="py-16 px-4" id="fin-form-section-y1z2">
-    <div data-id="399" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <!-- Pre-Approval Form -->
-      <div data-id="400" class="scroll-reveal">
-        <h2 data-id="401" class="font-display text-2xl md:text-3xl gold-text font-bold mb-6">Pre-Approval Application</h2>
-        <form data-id="402" id="fin-form-a3b4" class="space-y-4">
-          <div data-id="403" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div data-id="404">
-              <label data-id="405" class="text-xs text-gold-400/60 tracking-wider mb-1 block">FULL NAME *</label>
-              <input data-id="406" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="John Doe" required id="fin-name-c5d6" />
-            </div>
-            <div data-id="407">
-              <label data-id="408" class="text-xs text-gold-400/60 tracking-wider mb-1 block">EMAIL *</label>
-              <input data-id="409" type="email" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="john@email.com" required id="fin-email-e7f8" />
-            </div>
+  <section data-id="440" class="py-16 px-4" id="fin-form-section-y1z2">
+    <div data-id="441" class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div data-id="442" class="scroll-reveal">
+        <h2 data-id="443" class="font-display text-2xl md:text-3xl gold-text font-bold mb-6">Pre-Approval Application</h2>
+        <form data-id="444" id="fin-form-a3b4" class="space-y-4">
+          <div data-id="445" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div data-id="446"><label data-id="447" class="text-xs text-gold-400/60 tracking-wider mb-1 block">FULL NAME *</label><input data-id="448" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="John Doe" required id="fin-name-c5d6" /></div>
+            <div data-id="449"><label data-id="450" class="text-xs text-gold-400/60 tracking-wider mb-1 block">EMAIL *</label><input data-id="451" type="email" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="john@email.com" required id="fin-email-e7f8" /></div>
           </div>
-          <div data-id="410" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div data-id="411">
-              <label data-id="412" class="text-xs text-gold-400/60 tracking-wider mb-1 block">PHONE *</label>
-              <input data-id="413" type="tel" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="(708) 555-0000" required id="fin-phone-g9h0" />
-            </div>
-            <div data-id="414">
-              <label data-id="415" class="text-xs text-gold-400/60 tracking-wider mb-1 block">EMPLOYMENT STATUS</label>
-              <select data-id="416" class="form-input w-full px-4 py-3 rounded-xl text-sm" id="fin-employment-i1j2">
-                <option data-id="417">Employed Full-Time</option>
-                <option data-id="418">Employed Part-Time</option>
-                <option data-id="419">Self-Employed</option>
-                <option data-id="420">Retired</option>
-                <option data-id="421">Other</option>
-              </select>
-            </div>
+          <div data-id="452" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div data-id="453"><label data-id="454" class="text-xs text-gold-400/60 tracking-wider mb-1 block">PHONE *</label><input data-id="455" type="tel" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="(708) 555-0000" required id="fin-phone-g9h0" /></div>
+            <div data-id="456"><label data-id="457" class="text-xs text-gold-400/60 tracking-wider mb-1 block">EMPLOYMENT STATUS</label><select data-id="458" class="form-input w-full px-4 py-3 rounded-xl text-sm" id="fin-employment-i1j2"><option data-id="459">Employed Full-Time</option><option data-id="460">Employed Part-Time</option><option data-id="461">Self-Employed</option><option data-id="462">Retired</option><option data-id="463">Other</option></select></div>
           </div>
-          <div data-id="422" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div data-id="423">
-              <label data-id="424" class="text-xs text-gold-400/60 tracking-wider mb-1 block">MONTHLY INCOME *</label>
-              <input data-id="425" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="$8,000" required id="fin-income-k3l4" />
-            </div>
-            <div data-id="426">
-              <label data-id="427" class="text-xs text-gold-400/60 tracking-wider mb-1 block">VEHICLE OF INTEREST</label>
-              <input data-id="428" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="2024 Porsche 911" id="fin-vehicle-m5n6" />
-            </div>
+          <div data-id="464" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div data-id="465"><label data-id="466" class="text-xs text-gold-400/60 tracking-wider mb-1 block">MONTHLY INCOME *</label><input data-id="467" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="$8,000" required id="fin-income-k3l4" /></div>
+            <div data-id="468"><label data-id="469" class="text-xs text-gold-400/60 tracking-wider mb-1 block">VEHICLE OF INTEREST</label><input data-id="470" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="2024 Porsche 911" id="fin-vehicle-m5n6" /></div>
           </div>
-          <div data-id="429" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div data-id="430">
-              <label data-id="431" class="text-xs text-gold-400/60 tracking-wider mb-1 block">DOWN PAYMENT</label>
-              <input data-id="432" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="$10,000" id="fin-down-o7p8" />
-            </div>
-            <div data-id="433">
-              <label data-id="434" class="text-xs text-gold-400/60 tracking-wider mb-1 block">DESIRED LOAN TERM</label>
-              <select data-id="435" class="form-input w-full px-4 py-3 rounded-xl text-sm" id="fin-term-q9r0">
-                <option data-id="436">36 Months</option>
-                <option data-id="437">48 Months</option>
-                <option data-id="438">60 Months</option>
-                <option data-id="439">72 Months</option>
-                <option data-id="440">84 Months</option>
-              </select>
-            </div>
+          <div data-id="471" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div data-id="472"><label data-id="473" class="text-xs text-gold-400/60 tracking-wider mb-1 block">DOWN PAYMENT</label><input data-id="474" type="text" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="$10,000" id="fin-down-o7p8" /></div>
+            <div data-id="475"><label data-id="476" class="text-xs text-gold-400/60 tracking-wider mb-1 block">DESIRED LOAN TERM</label><select data-id="477" class="form-input w-full px-4 py-3 rounded-xl text-sm" id="fin-term-q9r0"><option data-id="478">36 Months</option><option data-id="479">48 Months</option><option data-id="480">60 Months</option><option data-id="481">72 Months</option><option data-id="482">84 Months</option></select></div>
           </div>
-          <button data-id="441" type="submit" class="btn-gold w-full py-4 rounded-xl text-sm tracking-wider font-bold" id="fin-submit-s1t2">
-            <i data-id="442" data-lucide="shield-check" class="w-4 h-4 inline mr-2"></i>GET PRE-APPROVED NOW
-          </button>
+          <button data-id="483" type="submit" class="btn-gold w-full py-4 rounded-xl text-sm tracking-wider font-bold" id="fin-submit-s1t2"><i data-id="484" data-lucide="shield-check" class="w-4 h-4 inline mr-2"></i>GET PRE-APPROVED NOW</button>
         </form>
       </div>
-
-      <!-- Payment Calculator -->
-      <div data-id="443" class="scroll-reveal">
-        <h2 data-id="444" class="font-display text-2xl md:text-3xl gold-text font-bold mb-6">Payment Calculator</h2>
-        <div data-id="445" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
-          <div data-id="446" class="mb-6">
-            <label data-id="447" class="text-xs text-gold-400/60 tracking-wider mb-2 block">VEHICLE PRICE: <span data-id="448" id="calc-price-display-u3v4" class="gold-text font-bold tabular-nums">$80,000</span></label>
-            <input data-id="449" type="range" id="calc-price-w5x6" min="20000" max="400000" value="80000" step="5000" class="w-full accent-[#C9A84C] cursor-pointer" />
-          </div>
-          <div data-id="450" class="mb-6">
-            <label data-id="451" class="text-xs text-gold-400/60 tracking-wider mb-2 block">DOWN PAYMENT: <span data-id="452" id="calc-down-display-y7z8" class="gold-text font-bold tabular-nums">$15,000</span></label>
-            <input data-id="453" type="range" id="calc-down-a9b0" min="0" max="100000" value="15000" step="1000" class="w-full accent-[#C9A84C] cursor-pointer" />
-          </div>
-          <div data-id="454" class="mb-6">
-            <label data-id="455" class="text-xs text-gold-400/60 tracking-wider mb-2 block">LOAN TERM: <span data-id="456" id="calc-term-display-c1d2" class="gold-text font-bold tabular-nums">60 months</span></label>
-            <input data-id="457" type="range" id="calc-term-e3f4" min="24" max="84" value="60" step="12" class="w-full accent-[#C9A84C] cursor-pointer" />
-          </div>
-          <div data-id="458" class="mb-6">
-            <label data-id="459" class="text-xs text-gold-400/60 tracking-wider mb-2 block">INTEREST RATE: <span data-id="460" id="calc-rate-display-g5h6" class="gold-text font-bold tabular-nums">5.9%</span></label>
-            <input data-id="461" type="range" id="calc-rate-i7j8" min="2" max="15" value="5.9" step="0.1" class="w-full accent-[#C9A84C] cursor-pointer" />
-          </div>
-          <div data-id="462" class="bg-night-400 rounded-xl p-6 text-center border border-gold-400/20">
-            <p data-id="463" class="text-xs text-gold-400/60 tracking-widest mb-2">ESTIMATED MONTHLY PAYMENT</p>
-            <p data-id="464" id="calc-result-k9l0" class="font-display text-4xl md:text-5xl gold-text font-bold gold-glow tabular-nums">$1,254</p>
-            <p data-id="465" class="text-xs text-gray-500 mt-2">*Estimated. Actual terms may vary.</p>
+      <div data-id="485" class="scroll-reveal">
+        <h2 data-id="486" class="font-display text-2xl md:text-3xl gold-text font-bold mb-6">Payment Calculator</h2>
+        <div data-id="487" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
+          <div data-id="488" class="mb-6"><label data-id="489" class="text-xs text-gold-400/60 tracking-wider mb-2 block">VEHICLE PRICE: <span data-id="490" id="calc-price-display-u3v4" class="gold-text font-bold tabular-nums">$80,000</span></label><input data-id="491" type="range" id="calc-price-w5x6" min="20000" max="400000" value="80000" step="5000" class="w-full accent-[#C9A84C] cursor-pointer" /></div>
+          <div data-id="492" class="mb-6"><label data-id="493" class="text-xs text-gold-400/60 tracking-wider mb-2 block">DOWN PAYMENT: <span data-id="494" id="calc-down-display-y7z8" class="gold-text font-bold tabular-nums">$15,000</span></label><input data-id="495" type="range" id="calc-down-a9b0" min="0" max="100000" value="15000" step="1000" class="w-full accent-[#C9A84C] cursor-pointer" /></div>
+          <div data-id="496" class="mb-6"><label data-id="497" class="text-xs text-gold-400/60 tracking-wider mb-2 block">LOAN TERM: <span data-id="498" id="calc-term-display-c1d2" class="gold-text font-bold tabular-nums">60 months</span></label><input data-id="499" type="range" id="calc-term-e3f4" min="24" max="84" value="60" step="12" class="w-full accent-[#C9A84C] cursor-pointer" /></div>
+          <div data-id="500" class="mb-6"><label data-id="501" class="text-xs text-gold-400/60 tracking-wider mb-2 block">INTEREST RATE: <span data-id="502" id="calc-rate-display-g5h6" class="gold-text font-bold tabular-nums">5.9%</span></label><input data-id="503" type="range" id="calc-rate-i7j8" min="2" max="15" value="5.9" step="0.1" class="w-full accent-[#C9A84C] cursor-pointer" /></div>
+          <div data-id="504" class="bg-night-400 rounded-xl p-6 text-center border border-gold-400/20">
+            <p data-id="505" class="text-xs text-gold-400/60 tracking-widest mb-2">ESTIMATED MONTHLY PAYMENT</p>
+            <p data-id="506" id="calc-result-k9l0" class="font-display text-4xl md:text-5xl gold-text font-bold gold-glow tabular-nums">$1,254</p>
+            <p data-id="507" class="text-xs text-gray-500 mt-2">*Estimated. Actual terms may vary.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Finance Partners -->
-  <section data-id="466" class="py-12 px-4 border-t border-gold-400/10" id="fin-partners-m1n2">
-    <div data-id="467" class="max-w-5xl mx-auto text-center scroll-reveal">
-      <p data-id="468" class="text-gold-400/60 text-xs tracking-[0.4em] mb-6">TRUSTED LENDING PARTNERS</p>
-      <div data-id="469" class="flex flex-wrap justify-center gap-8 items-center opacity-50">
-        <span data-id="470" class="font-display text-xl text-gray-400">Chase</span>
-        <span data-id="471" class="font-display text-xl text-gray-400">Capital One</span>
-        <span data-id="472" class="font-display text-xl text-gray-400">Ally Financial</span>
-        <span data-id="473" class="font-display text-xl text-gray-400">Wells Fargo</span>
-        <span data-id="474" class="font-display text-xl text-gray-400">US Bank</span>
-        <span data-id="475" class="font-display text-xl text-gray-400">TD Auto</span>
+  <section data-id="508" class="py-12 px-4 border-t border-gold-400/10" id="fin-partners-m1n2">
+    <div data-id="509" class="max-w-5xl mx-auto text-center scroll-reveal">
+      <p data-id="510" class="text-gold-400/60 text-xs tracking-[0.4em] mb-6">TRUSTED LENDING PARTNERS</p>
+      <div data-id="511" class="flex flex-wrap justify-center gap-8 items-center opacity-50">
+        <span data-id="512" class="font-display text-xl text-gray-400">Chase</span>
+        <span data-id="513" class="font-display text-xl text-gray-400">Capital One</span>
+        <span data-id="514" class="font-display text-xl text-gray-400">Ally Financial</span>
+        <span data-id="515" class="font-display text-xl text-gray-400">Wells Fargo</span>
+        <span data-id="516" class="font-display text-xl text-gray-400">US Bank</span>
+        <span data-id="517" class="font-display text-xl text-gray-400">TD Auto</span>
       </div>
     </div>
   </section>
-
-  <!-- Status Checker -->
-  <section data-id="476" class="py-12 px-4" id="fin-status-o3p4" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
-    <div data-id="477" class="max-w-lg mx-auto text-center scroll-reveal">
-      <h3 data-id="478" class="font-display text-2xl gold-text font-bold mb-4">Check Application Status</h3>
-      <p data-id="479" class="text-gray-400 text-sm mb-6">Already applied? Enter your confirmation number below.</p>
-      <div data-id="480" class="flex gap-3">
-        <input data-id="481" type="text" class="form-input flex-1 px-4 py-3 rounded-xl text-sm" placeholder="Confirmation #" id="fin-status-input-q5r6" />
-        <button data-id="482" class="btn-gold px-6 py-3 rounded-xl text-sm font-bold" id="fin-status-btn-s7t8">Check</button>
+  <section data-id="518" class="py-12 px-4" id="fin-status-o3p4" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
+    <div data-id="519" class="max-w-lg mx-auto text-center scroll-reveal">
+      <h3 data-id="520" class="font-display text-2xl gold-text font-bold mb-4">Check Application Status</h3>
+      <p data-id="521" class="text-gray-400 text-sm mb-6">Already applied? Enter your confirmation number below.</p>
+      <div data-id="522" class="flex gap-3">
+        <input data-id="523" type="text" class="form-input flex-1 px-4 py-3 rounded-xl text-sm" placeholder="Confirmation #" id="fin-status-input-q5r6" />
+        <button data-id="524" class="btn-gold px-6 py-3 rounded-xl text-sm font-bold" id="fin-status-btn-s7t8">Check</button>
       </div>
     </div>
   </section>
-
 </section>
 
 <!-- ============================================================ -->
 <!-- PAGE 4: PORTAL -->
 <!-- ============================================================ -->
-<section data-id="483" id="page-portal" class="page-section">
-
-  <!-- Portal Header -->
-  <div data-id="484" class="pt-24 pb-8 px-4 text-center" style="background:linear-gradient(180deg,#0a1628,#0a0a0a)">
-    <p data-id="485" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
-    <h1 data-id="486" class="font-display text-3xl md:text-5xl font-bold gold-text gold-glow" id="portal-title-u9v0">Customer & Staff Portal</h1>
+<section data-id="525" id="page-portal" class="page-section">
+  <div data-id="526" class="pt-24 pb-8 px-4 text-center" style="background:linear-gradient(180deg,#0a1628,#0a0a0a)">
+    <p data-id="527" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
+    <h1 data-id="528" class="font-display text-3xl md:text-5xl font-bold gold-text gold-glow" id="portal-title-u9v0">Customer & Staff Portal</h1>
   </div>
-
-  <!-- Split Login -->
-  <div data-id="487" id="portal-login-section-w1x2">
-    <div data-id="488" class="portal-split max-w-6xl mx-auto rounded-2xl overflow-hidden mx-4 md:mx-auto border border-gold-400/10" style="margin:0 1rem;">
-      <!-- Customer Side (Day/Light) -->
-      <div data-id="489" class="portal-left p-8 md:p-12 flex flex-col justify-center">
-        <h2 data-id="490" class="font-display text-2xl md:text-3xl font-bold text-night-400 mb-2">Customer Login</h2>
-        <p data-id="491" class="text-night-400/70 text-sm mb-6">Access your saved vehicles, financing, and appointments.</p>
-        <div data-id="492" class="space-y-4 max-w-sm">
-          <input data-id="493" type="email" class="w-full px-4 py-3 rounded-xl text-sm bg-white/80 text-night-400 border border-white/50 focus:border-gold-400 outline-none" placeholder="Email address" id="portal-cust-email-y3z4" />
-          <input data-id="494" type="password" class="w-full px-4 py-3 rounded-xl text-sm bg-white/80 text-night-400 border border-white/50 focus:border-gold-400 outline-none" placeholder="Password" id="portal-cust-pass-a5b6" />
-          <button data-id="495" class="btn-gold w-full py-3 rounded-xl text-sm font-bold" id="portal-cust-login-c7d8">Sign In</button>
-          <div data-id="496" class="flex gap-3">
-            <button data-id="497" class="flex-1 bg-white text-night-400 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-100 transition" id="portal-google-btn-e9f0">
-              <i data-id="498" data-lucide="chrome" class="w-4 h-4"></i> Google
-            </button>
-            <button data-id="499" class="flex-1 bg-night-400 text-white py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer hover:bg-night-200 transition" id="portal-apple-btn-g1h2">
-              <i data-id="500" data-lucide="smartphone" class="w-4 h-4"></i> Apple
-            </button>
+  <div data-id="529" id="portal-login-section-w1x2">
+    <div data-id="530" class="portal-split max-w-6xl mx-auto rounded-2xl overflow-hidden mx-4 md:mx-auto border border-gold-400/10" style="margin:0 1rem;">
+      <div data-id="531" class="portal-left p-8 md:p-12 flex flex-col justify-center">
+        <h2 data-id="532" class="font-display text-2xl md:text-3xl font-bold text-night-400 mb-2">Customer Login</h2>
+        <p data-id="533" class="text-night-400/70 text-sm mb-6">Access your saved vehicles, financing, and appointments.</p>
+        <div data-id="534" class="space-y-4 max-w-sm">
+          <input data-id="535" type="email" class="w-full px-4 py-3 rounded-xl text-sm bg-white/80 text-night-400 border border-white/50 focus:border-gold-400 outline-none" placeholder="Email address" id="portal-cust-email-y3z4" />
+          <input data-id="536" type="password" class="w-full px-4 py-3 rounded-xl text-sm bg-white/80 text-night-400 border border-white/50 focus:border-gold-400 outline-none" placeholder="Password" id="portal-cust-pass-a5b6" />
+          <button data-id="537" class="btn-gold w-full py-3 rounded-xl text-sm font-bold" id="portal-cust-login-c7d8">Sign In</button>
+          <div data-id="538" class="flex gap-3">
+            <button data-id="539" class="flex-1 bg-white text-night-400 py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-100 transition" id="portal-google-btn-e9f0"><i data-id="540" data-lucide="chrome" class="w-4 h-4"></i> Google</button>
+            <button data-id="541" class="flex-1 bg-night-400 text-white py-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer hover:bg-night-200 transition" id="portal-apple-btn-g1h2"><i data-id="542" data-lucide="smartphone" class="w-4 h-4"></i> Apple</button>
           </div>
         </div>
       </div>
-      <!-- Staff Side (Night/Dark) -->
-      <div data-id="501" class="portal-right p-8 md:p-12 flex flex-col justify-center">
-        <h2 data-id="502" class="font-display text-2xl md:text-3xl font-bold gold-text mb-2">Dealership Staff</h2>
-        <p data-id="503" class="text-gray-400 text-sm mb-6">Access inventory management, leads, and analytics.</p>
-        <div data-id="504" class="space-y-4 max-w-sm">
-          <input data-id="505" type="email" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Staff email" id="portal-staff-email-i3j4" />
-          <input data-id="506" type="password" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Password" id="portal-staff-pass-k5l6" />
-          <button data-id="507" class="btn-outline-gold w-full py-3 rounded-xl text-sm font-bold" id="portal-staff-login-m7n8">Staff Login</button>
+      <div data-id="543" class="portal-right p-8 md:p-12 flex flex-col justify-center">
+        <h2 data-id="544" class="font-display text-2xl md:text-3xl font-bold gold-text mb-2">Dealership Staff</h2>
+        <p data-id="545" class="text-gray-400 text-sm mb-6">Access inventory management, leads, and analytics.</p>
+        <div data-id="546" class="space-y-4 max-w-sm">
+          <input data-id="547" type="email" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Staff email" id="portal-staff-email-i3j4" />
+          <input data-id="548" type="password" class="form-input w-full px-4 py-3 rounded-xl text-sm" placeholder="Password" id="portal-staff-pass-k5l6" />
+          <button data-id="549" class="btn-outline-gold w-full py-3 rounded-xl text-sm font-bold" id="portal-staff-login-m7n8">Staff Login</button>
         </div>
       </div>
     </div>
-
-    <!-- Center Vehicle Display -->
-    <div data-id="508" class="text-center py-8">
-      <div data-id="509" class="text-center">
-        <img data-id="510" src="https://ts2.mm.bing.net/th?id=OIP.HKwtoVsMGi-iFm0agLIZ5QHaFj&pid=15.1&o=7&rm=3" alt="White Mercedes-Benz GLE SUV" class="mx-auto max-w-xs md:max-w-md rounded-2xl shadow-2xl" style="filter:drop-shadow(0 0 30px rgba(201,168,76,0.2))" />
-        <p data-id="511" class="font-display text-xl gold-text font-bold mt-4 tabular-nums">$14,500 – $17,200</p>
-        <p data-id="512" class="text-gray-400 text-xs tracking-widest">ESTIMATED RANGE</p>
+    <div data-id="550" class="text-center py-8">
+      <div data-id="551" class="text-center">
+        <img data-id="552" src="https://ts2.mm.bing.net/th?id=OIP.HKwtoVsMGi-iFm0agLIZ5QHaFj&pid=15.1&o=7&rm=3" alt="White Mercedes-Benz GLE SUV" class="mx-auto max-w-xs md:max-w-md rounded-2xl shadow-2xl" style="filter:drop-shadow(0 0 30px rgba(201,168,76,0.2))" />
+        <p data-id="553" class="font-display text-xl gold-text font-bold mt-4 tabular-nums">$14,500 – $17,200</p>
+        <p data-id="554" class="text-gray-400 text-xs tracking-widest">ESTIMATED RANGE</p>
       </div>
     </div>
-
-    <!-- Document Upload Center -->
-    <section data-id="513" class="py-12 px-4" id="portal-docs-o9p0">
-      <div data-id="514" class="max-w-5xl mx-auto">
-        <h3 data-id="515" class="font-display text-2xl gold-text font-bold text-center mb-8">Document Upload Center</h3>
-        <div data-id="516" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          <div data-id="517" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="license">
-            <div data-id="518" class="text-4xl mb-2">🪪</div>
-            <p data-id="519" class="text-xs font-semibold tracking-wider">Driver's License</p>
-            <button data-id="520" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button>
-          </div>
-          <div data-id="521" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="insurance">
-            <div data-id="522" class="text-4xl mb-2">🛡️</div>
-            <p data-id="523" class="text-xs font-semibold tracking-wider">Insurance</p>
-            <button data-id="524" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button>
-          </div>
-          <div data-id="525" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="banking">
-            <div data-id="526" class="text-4xl mb-2">🏦</div>
-            <p data-id="527" class="text-xs font-semibold tracking-wider">Banking Info</p>
-            <button data-id="528" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button>
-          </div>
-          <div data-id="529" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="address">
-            <div data-id="530" class="text-4xl mb-2">📍</div>
-            <p data-id="531" class="text-xs font-semibold tracking-wider">Book-it Address</p>
-            <button data-id="532" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button>
-          </div>
-          <div data-id="533" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="tradein">
-            <div data-id="534" class="text-4xl mb-2">🚗</div>
-            <p data-id="535" class="text-xs font-semibold tracking-wider">Trade-in Update</p>
-            <button data-id="536" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button>
-          </div>
+    <section data-id="555" class="py-12 px-4" id="portal-docs-o9p0">
+      <div data-id="556" class="max-w-5xl mx-auto">
+        <h3 data-id="557" class="font-display text-2xl gold-text font-bold text-center mb-8">Document Upload Center</h3>
+        <div data-id="558" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div data-id="559" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="license"><div data-id="560" class="text-4xl mb-2">🪪</div><p data-id="561" class="text-xs font-semibold tracking-wider">Driver's License</p><button data-id="562" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button></div>
+          <div data-id="563" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="insurance"><div data-id="564" class="text-4xl mb-2">🛡️</div><p data-id="565" class="text-xs font-semibold tracking-wider">Insurance</p><button data-id="566" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button></div>
+          <div data-id="567" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="banking"><div data-id="568" class="text-4xl mb-2">🏦</div><p data-id="569" class="text-xs font-semibold tracking-wider">Banking Info</p><button data-id="570" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button></div>
+          <div data-id="571" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="address"><div data-id="572" class="text-4xl mb-2">📍</div><p data-id="573" class="text-xs font-semibold tracking-wider">Book-it Address</p><button data-id="574" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button></div>
+          <div data-id="575" class="text-center p-4 rounded-2xl border border-gold-400/10 hover:border-gold-400/40 transition card-hover cursor-pointer doc-upload-card" data-doc="tradein"><div data-id="576" class="text-4xl mb-2">🚗</div><p data-id="577" class="text-xs font-semibold tracking-wider">Trade-in Update</p><button data-id="578" class="btn-outline-gold px-3 py-1 rounded-lg text-[10px] mt-2 doc-upload-btn">Upload</button></div>
         </div>
       </div>
     </section>
-
-    <!-- Workflow Progress -->
-    <section data-id="537" class="py-12 px-4 border-t border-gold-400/10" id="portal-workflow-q1r2">
-      <div data-id="538" class="max-w-4xl mx-auto">
-        <h3 data-id="539" class="font-display text-2xl gold-text font-bold text-center mb-8">Purchase Workflow</h3>
-        <div data-id="540" class="flex flex-wrap justify-between items-center relative">
-          <div data-id="541" class="absolute top-6 left-0 right-0 h-0.5 bg-gold-400/20 hidden md:block"></div>
-          <div data-id="542" class="workflow-step completed text-center flex-1 relative z-10">
-            <div data-id="543" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm">1</div>
-            <p data-id="544" class="text-xs mt-2 text-gray-300">Start</p>
-            <p data-id="545" class="text-[10px] text-gold-400/60">Upload Docs</p>
-          </div>
-          <div data-id="546" class="workflow-step text-center flex-1 relative z-10">
-            <div data-id="547" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">2</div>
-            <p data-id="548" class="text-xs mt-2 text-gray-500">Verify</p>
-          </div>
-          <div data-id="549" class="workflow-step text-center flex-1 relative z-10">
-            <div data-id="550" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">3</div>
-            <p data-id="551" class="text-xs mt-2 text-gray-500">DocuSign</p>
-          </div>
-          <div data-id="552" class="workflow-step text-center flex-1 relative z-10">
-            <div data-id="553" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">4</div>
-            <p data-id="554" class="text-xs mt-2 text-gray-500">Test Drive</p>
-          </div>
-          <div data-id="555" class="workflow-step text-center flex-1 relative z-10">
-            <div data-id="556" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">5</div>
-            <p data-id="557" class="text-xs mt-2 text-gray-500">Keys in Hand 🔑</p>
-          </div>
+    <section data-id="579" class="py-12 px-4 border-t border-gold-400/10" id="portal-workflow-q1r2">
+      <div data-id="580" class="max-w-4xl mx-auto">
+        <h3 data-id="581" class="font-display text-2xl gold-text font-bold text-center mb-8">Purchase Workflow</h3>
+        <div data-id="582" class="flex flex-wrap justify-between items-center relative">
+          <div data-id="583" class="absolute top-6 left-0 right-0 h-0.5 bg-gold-400/20 hidden md:block"></div>
+          <div data-id="584" class="workflow-step completed text-center flex-1 relative z-10"><div data-id="585" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm">1</div><p data-id="586" class="text-xs mt-2 text-gray-300">Start</p><p data-id="587" class="text-[10px] text-gold-400/60">Upload Docs</p></div>
+          <div data-id="588" class="workflow-step text-center flex-1 relative z-10"><div data-id="589" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">2</div><p data-id="590" class="text-xs mt-2 text-gray-500">Verify</p></div>
+          <div data-id="591" class="workflow-step text-center flex-1 relative z-10"><div data-id="592" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">3</div><p data-id="593" class="text-xs mt-2 text-gray-500">DocuSign</p></div>
+          <div data-id="594" class="workflow-step text-center flex-1 relative z-10"><div data-id="595" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">4</div><p data-id="596" class="text-xs mt-2 text-gray-500">Test Drive</p></div>
+          <div data-id="597" class="workflow-step text-center flex-1 relative z-10"><div data-id="598" class="step-circle w-12 h-12 rounded-full border-2 border-gold-400/30 flex items-center justify-center mx-auto bg-night-400 font-bold text-sm text-gray-500">5</div><p data-id="599" class="text-xs mt-2 text-gray-500">Keys in Hand 🔑</p></div>
         </div>
       </div>
     </section>
   </div>
-
-  <!-- Customer Dashboard (hidden by default) -->
-  <div data-id="558" id="portal-customer-dash-s3t4" class="hidden py-8 px-4">
-    <div data-id="559" class="max-w-6xl mx-auto">
-      <div data-id="560" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <div data-id="561">
-          <h2 data-id="562" class="font-display text-2xl gold-text font-bold">Welcome back, <span data-id="563" id="dash-user-name-u5v6">jojoe</span></h2>
-          <p data-id="564" class="text-gray-400 text-sm">Your personal Luxury Automaxx dashboard</p>
-        </div>
-        <button data-id="565" class="btn-outline-gold px-4 py-2 rounded-xl text-xs" id="portal-logout-w7x8">Sign Out</button>
+  <div data-id="600" id="portal-customer-dash-s3t4" class="hidden py-8 px-4">
+    <div data-id="601" class="max-w-6xl mx-auto">
+      <div data-id="602" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div data-id="603"><h2 data-id="604" class="font-display text-2xl gold-text font-bold">Welcome back, <span data-id="605" id="dash-user-name-u5v6">jojoe</span></h2><p data-id="606" class="text-gray-400 text-sm">Your personal Luxury Automaxx dashboard</p></div>
+        <button data-id="607" class="btn-outline-gold px-4 py-2 rounded-xl text-xs" id="portal-logout-w7x8">Sign Out</button>
       </div>
-      <!-- Tabs -->
-      <div data-id="566" class="flex gap-1 border-b border-gold-400/10 mb-6 overflow-x-auto">
-        <div data-id="567" class="tab-btn active cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="saved">
-          <i data-id="568" data-lucide="heart" class="w-4 h-4 inline mr-1"></i> Saved Vehicles
-        </div>
-        <div data-id="569" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="financing-tab">
-          <i data-id="570" data-lucide="landmark" class="w-4 h-4 inline mr-1"></i> Financing
-        </div>
-        <div data-id="571" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="appointments">
-          <i data-id="572" data-lucide="calendar" class="w-4 h-4 inline mr-1"></i> Appointments
-        </div>
-        <div data-id="573" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="messages">
-          <i data-id="574" data-lucide="message-square" class="w-4 h-4 inline mr-1"></i> Messages
+      <div data-id="608" class="flex gap-1 border-b border-gold-400/10 mb-6 overflow-x-auto">
+        <div data-id="609" class="tab-btn active cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="saved"><i data-id="610" data-lucide="heart" class="w-4 h-4 inline mr-1"></i> Saved Vehicles</div>
+        <div data-id="611" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="financing-tab"><i data-id="612" data-lucide="landmark" class="w-4 h-4 inline mr-1"></i> Financing</div>
+        <div data-id="613" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="appointments"><i data-id="614" data-lucide="calendar" class="w-4 h-4 inline mr-1"></i> Appointments</div>
+        <div data-id="615" class="tab-btn cursor-pointer px-4 py-3 text-sm font-semibold whitespace-nowrap" data-tab="messages"><i data-id="616" data-lucide="message-square" class="w-4 h-4 inline mr-1"></i> Messages</div>
+      </div>
+      <div data-id="617" class="tab-content active" id="tab-saved-y9z0">
+        <div data-id="618" id="saved-vehicles-grid-a1b2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div data-id="619" class="text-center py-12 text-gray-500 col-span-full"><i data-id="620" data-lucide="heart" class="w-12 h-12 mx-auto mb-3 opacity-30"></i><p data-id="621">No saved vehicles yet. Browse our <span data-id="622" class="gold-text cursor-pointer" data-page="inventory">inventory</span> to save favorites.</p></div>
         </div>
       </div>
-      <!-- Tab: Saved -->
-      <div data-id="575" class="tab-content active" id="tab-saved-y9z0">
-        <div data-id="576" id="saved-vehicles-grid-a1b2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div data-id="577" class="text-center py-12 text-gray-500 col-span-full">
-            <i data-id="578" data-lucide="heart" class="w-12 h-12 mx-auto mb-3 opacity-30"></i>
-            <p data-id="579">No saved vehicles yet. Browse our <span data-id="580" class="gold-text cursor-pointer" data-page="inventory">inventory</span> to save favorites.</p>
-          </div>
+      <div data-id="623" class="tab-content" id="tab-financing-tab-c3d4">
+        <div data-id="624" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
+          <h3 data-id="625" class="font-display text-xl gold-text mb-4">Your Applications</h3>
+          <div data-id="626" class="bg-night-300/50 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"><div data-id="627"><p data-id="628" class="font-semibold">Pre-Approval Application</p><p data-id="629" class="text-xs text-gray-400">Submitted May 9, 2026</p></div><span data-id="630" class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-bold">APPROVED</span></div>
+          <div data-id="631" class="mt-4 bg-night-300/50 rounded-xl p-4"><p data-id="632" class="text-sm text-gray-400">Approved Amount: <span data-id="633" class="gold-text font-bold tabular-nums">$125,000</span></p><p data-id="634" class="text-sm text-gray-400">Interest Rate: <span data-id="635" class="gold-text font-bold tabular-nums">4.9% APR</span></p><p data-id="636" class="text-sm text-gray-400">Term: <span data-id="637" class="gold-text font-bold">60 months</span></p></div>
         </div>
       </div>
-      <!-- Tab: Financing -->
-      <div data-id="581" class="tab-content" id="tab-financing-tab-c3d4">
-        <div data-id="582" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
-          <h3 data-id="583" class="font-display text-xl gold-text mb-4">Your Applications</h3>
-          <div data-id="584" class="bg-night-300/50 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <div data-id="585">
-              <p data-id="586" class="font-semibold">Pre-Approval Application</p>
-              <p data-id="587" class="text-xs text-gray-400">Submitted May 9, 2026</p>
-            </div>
-            <span data-id="588" class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-bold">APPROVED</span>
-          </div>
-          <div data-id="589" class="mt-4 bg-night-300/50 rounded-xl p-4">
-            <p data-id="590" class="text-sm text-gray-400">Approved Amount: <span data-id="591" class="gold-text font-bold tabular-nums">$125,000</span></p>
-            <p data-id="592" class="text-sm text-gray-400">Interest Rate: <span data-id="593" class="gold-text font-bold tabular-nums">4.9% APR</span></p>
-            <p data-id="594" class="text-sm text-gray-400">Term: <span data-id="595" class="gold-text font-bold">60 months</span></p>
-          </div>
+      <div data-id="638" class="tab-content" id="tab-appointments-e5f6">
+        <div data-id="639" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
+          <h3 data-id="640" class="font-display text-xl gold-text mb-4">Upcoming Appointments</h3>
+          <div data-id="641" class="bg-night-300/50 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"><div data-id="642"><p data-id="643" class="font-semibold">Test Drive — 2024 Porsche 911 Turbo S</p><p data-id="644" class="text-xs text-gray-400">May 12, 2026 at 2:00 PM CDT</p></div><span data-id="645" class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-bold">CONFIRMED</span></div>
         </div>
       </div>
-      <!-- Tab: Appointments -->
-      <div data-id="596" class="tab-content" id="tab-appointments-e5f6">
-        <div data-id="597" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
-          <h3 data-id="598" class="font-display text-xl gold-text mb-4">Upcoming Appointments</h3>
-          <div data-id="599" class="bg-night-300/50 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <div data-id="600">
-              <p data-id="601" class="font-semibold">Test Drive — 2024 Porsche 911 Turbo S</p>
-              <p data-id="602" class="text-xs text-gray-400">May 12, 2026 at 2:00 PM CDT</p>
-            </div>
-            <span data-id="603" class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-bold">CONFIRMED</span>
-          </div>
-        </div>
-      </div>
-      <!-- Tab: Messages -->
-      <div data-id="604" class="tab-content" id="tab-messages-g7h8">
-        <div data-id="605" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
-          <h3 data-id="606" class="font-display text-xl gold-text mb-4">Messages</h3>
-          <div data-id="607" class="space-y-3">
-            <div data-id="608" class="bg-night-300/50 rounded-xl p-4">
-              <div data-id="609" class="flex justify-between items-center mb-2">
-                <p data-id="610" class="font-semibold text-sm">Sales Team</p>
-                <p data-id="611" class="text-[10px] text-gray-500">2 hours ago</p>
-              </div>
-              <p data-id="612" class="text-sm text-gray-300">Hi jojoe! Your pre-approval has been confirmed. Ready to schedule your test drive? We have the Porsche 911 Turbo S ready for you.</p>
-            </div>
-            <div data-id="613" class="bg-night-300/50 rounded-xl p-4">
-              <div data-id="614" class="flex justify-between items-center mb-2">
-                <p data-id="615" class="font-semibold text-sm">Finance Department</p>
-                <p data-id="616" class="text-[10px] text-gray-500">1 day ago</p>
-              </div>
-              <p data-id="617" class="text-sm text-gray-300">Great news! Your financing application has been approved with a competitive 4.9% APR rate. Please review the terms at your convenience.</p>
-            </div>
+      <div data-id="646" class="tab-content" id="tab-messages-g7h8">
+        <div data-id="647" class="bg-night-100 rounded-2xl p-6 border border-gold-400/10">
+          <h3 data-id="648" class="font-display text-xl gold-text mb-4">Messages</h3>
+          <div data-id="649" class="space-y-3">
+            <div data-id="650" class="bg-night-300/50 rounded-xl p-4"><div data-id="651" class="flex justify-between items-center mb-2"><p data-id="652" class="font-semibold text-sm">Sales Team</p><p data-id="653" class="text-[10px] text-gray-500">2 hours ago</p></div><p data-id="654" class="text-sm text-gray-300">Hi jojoe! Your pre-approval has been confirmed. Ready to schedule your test drive? We have the Porsche 911 Turbo S ready for you.</p></div>
+            <div data-id="655" class="bg-night-300/50 rounded-xl p-4"><div data-id="656" class="flex justify-between items-center mb-2"><p data-id="657" class="font-semibold text-sm">Finance Department</p><p data-id="658" class="text-[10px] text-gray-500">1 day ago</p></div><p data-id="659" class="text-sm text-gray-300">Great news! Your financing application has been approved with a competitive 4.9% APR rate. Please review the terms at your convenience.</p></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Staff Dashboard (hidden by default) -->
-  <div data-id="618" id="portal-staff-dash-i9j0" class="hidden py-8 px-4">
-    <div data-id="619" class="max-w-7xl mx-auto">
-      <div data-id="620" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <div data-id="621">
-          <h2 data-id="622" class="font-display text-2xl gold-text font-bold">Staff Dashboard</h2>
-          <p data-id="623" class="text-gray-400 text-sm">Luxury Automaxx Management Console</p>
-        </div>
-        <button data-id="624" class="btn-outline-gold px-4 py-2 rounded-xl text-xs" id="staff-logout-k1l2">Sign Out</button>
+  <div data-id="660" id="portal-staff-dash-i9j0" class="hidden py-8 px-4">
+    <div data-id="661" class="max-w-7xl mx-auto">
+      <div data-id="662" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div data-id="663"><h2 data-id="664" class="font-display text-2xl gold-text font-bold">Staff Dashboard</h2><p data-id="665" class="text-gray-400 text-sm">Luxury Automaxx Management Console</p></div>
+        <button data-id="666" class="btn-outline-gold px-4 py-2 rounded-xl text-xs" id="staff-logout-k1l2">Sign Out</button>
       </div>
-      <!-- KPIs -->
-      <div data-id="625" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div data-id="626" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10">
-          <p data-id="627" class="text-xs text-gold-400/60 tracking-wider">SALES THIS MONTH</p>
-          <p data-id="628" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">$2.4M</p>
-          <p data-id="629" class="text-xs text-green-400 mt-1">↑ 12% from last month</p>
-        </div>
-        <div data-id="630" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10">
-          <p data-id="631" class="text-xs text-gold-400/60 tracking-wider">VEHICLES SOLD</p>
-          <p data-id="632" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">34</p>
-          <p data-id="633" class="text-xs text-green-400 mt-1">↑ 8% from last month</p>
-        </div>
-        <div data-id="634" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10">
-          <p data-id="635" class="text-xs text-gold-400/60 tracking-wider">ACTIVE LEADS</p>
-          <p data-id="636" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">87</p>
-          <p data-id="637" class="text-xs text-gold-400 mt-1">23 hot leads</p>
-        </div>
-        <div data-id="638" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10">
-          <p data-id="639" class="text-xs text-gold-400/60 tracking-wider">INVENTORY</p>
-          <p data-id="640" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">156</p>
-          <p data-id="641" class="text-xs text-gray-400 mt-1">12 arriving this week</p>
-        </div>
+      <div data-id="667" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div data-id="668" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10"><p data-id="669" class="text-xs text-gold-400/60 tracking-wider">SALES THIS MONTH</p><p data-id="670" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">$2.4M</p><p data-id="671" class="text-xs text-green-400 mt-1">↑ 12% from last month</p></div>
+        <div data-id="672" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10"><p data-id="673" class="text-xs text-gold-400/60 tracking-wider">VEHICLES SOLD</p><p data-id="674" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">34</p><p data-id="675" class="text-xs text-green-400 mt-1">↑ 8% from last month</p></div>
+        <div data-id="676" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10"><p data-id="677" class="text-xs text-gold-400/60 tracking-wider">ACTIVE LEADS</p><p data-id="678" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">87</p><p data-id="679" class="text-xs text-gold-400 mt-1">23 hot leads</p></div>
+        <div data-id="680" class="bg-night-100 rounded-2xl p-5 border border-gold-400/10"><p data-id="681" class="text-xs text-gold-400/60 tracking-wider">INVENTORY</p><p data-id="682" class="font-display text-2xl gold-text font-bold mt-1 tabular-nums">156</p><p data-id="683" class="text-xs text-gray-400 mt-1">12 arriving this week</p></div>
       </div>
-      <!-- Recent Leads Table -->
-      <div data-id="642" class="bg-night-100 rounded-2xl border border-gold-400/10 overflow-hidden">
-        <div data-id="643" class="p-5 border-b border-gold-400/10">
-          <h3 data-id="644" class="font-display text-lg gold-text">Recent Leads</h3>
-        </div>
-        <div data-id="645" class="overflow-x-auto">
-          <table data-id="646" class="w-full text-left text-sm">
-            <thead data-id="647" class="text-xs text-gold-400/60 tracking-wider border-b border-gold-400/10">
-              <tr data-id="648"><th data-id="649" class="px-5 py-3">NAME</th><th data-id="650" class="px-5 py-3">VEHICLE</th><th data-id="651" class="px-5 py-3">STATUS</th><th data-id="652" class="px-5 py-3">DATE</th></tr>
-            </thead>
-            <tbody data-id="653" class="divide-y divide-gold-400/5">
-              <tr data-id="654"><td data-id="655" class="px-5 py-3">Sarah M.</td><td data-id="656" class="px-5 py-3">2024 Porsche 911</td><td data-id="657" class="px-5 py-3"><span data-id="658" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="659" class="px-5 py-3 text-gray-400 tabular-nums">May 9</td></tr>
-              <tr data-id="660"><td data-id="661" class="px-5 py-3">James K.</td><td data-id="662" class="px-5 py-3">2024 Mercedes S580</td><td data-id="663" class="px-5 py-3"><span data-id="664" class="bg-gold-400/20 text-gold-400 px-2 py-0.5 rounded-full text-xs">Warm</span></td><td data-id="665" class="px-5 py-3 text-gray-400 tabular-nums">May 8</td></tr>
-              <tr data-id="666"><td data-id="667" class="px-5 py-3">Lisa R.</td><td data-id="668" class="px-5 py-3">2023 Bentley GT</td><td data-id="669" class="px-5 py-3"><span data-id="670" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="671" class="px-5 py-3 text-gray-400 tabular-nums">May 8</td></tr>
-              <tr data-id="672"><td data-id="673" class="px-5 py-3">David P.</td><td data-id="674" class="px-5 py-3">2024 BMW M8</td><td data-id="675" class="px-5 py-3"><span data-id="676" class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full text-xs">New</span></td><td data-id="677" class="px-5 py-3 text-gray-400 tabular-nums">May 7</td></tr>
-              <tr data-id="678"><td data-id="679" class="px-5 py-3">Ana T.</td><td data-id="680" class="px-5 py-3">2023 Lamborghini</td><td data-id="681" class="px-5 py-3"><span data-id="682" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="683" class="px-5 py-3 text-gray-400 tabular-nums">May 7</td></tr>
+      <div data-id="684" class="bg-night-100 rounded-2xl border border-gold-400/10 overflow-hidden">
+        <div data-id="685" class="p-5 border-b border-gold-400/10"><h3 data-id="686" class="font-display text-lg gold-text">Recent Leads</h3></div>
+        <div data-id="687" class="overflow-x-auto">
+          <table data-id="688" class="w-full text-left text-sm">
+            <thead data-id="689" class="text-xs text-gold-400/60 tracking-wider border-b border-gold-400/10"><tr data-id="690"><th data-id="691" class="px-5 py-3">NAME</th><th data-id="692" class="px-5 py-3">VEHICLE</th><th data-id="693" class="px-5 py-3">STATUS</th><th data-id="694" class="px-5 py-3">DATE</th></tr></thead>
+            <tbody data-id="695" class="divide-y divide-gold-400/5">
+              <tr data-id="696"><td data-id="697" class="px-5 py-3">Sarah M.</td><td data-id="698" class="px-5 py-3">2024 Porsche 911</td><td data-id="699" class="px-5 py-3"><span data-id="700" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="701" class="px-5 py-3 text-gray-400 tabular-nums">May 9</td></tr>
+              <tr data-id="702"><td data-id="703" class="px-5 py-3">James K.</td><td data-id="704" class="px-5 py-3">2024 Mercedes S580</td><td data-id="705" class="px-5 py-3"><span data-id="706" class="bg-gold-400/20 text-gold-400 px-2 py-0.5 rounded-full text-xs">Warm</span></td><td data-id="707" class="px-5 py-3 text-gray-400 tabular-nums">May 8</td></tr>
+              <tr data-id="708"><td data-id="709" class="px-5 py-3">Lisa R.</td><td data-id="710" class="px-5 py-3">2023 Bentley GT</td><td data-id="711" class="px-5 py-3"><span data-id="712" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="713" class="px-5 py-3 text-gray-400 tabular-nums">May 8</td></tr>
+              <tr data-id="714"><td data-id="715" class="px-5 py-3">David P.</td><td data-id="716" class="px-5 py-3">2024 BMW M8</td><td data-id="717" class="px-5 py-3"><span data-id="718" class="bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full text-xs">New</span></td><td data-id="719" class="px-5 py-3 text-gray-400 tabular-nums">May 7</td></tr>
+              <tr data-id="720"><td data-id="721" class="px-5 py-3">Ana T.</td><td data-id="722" class="px-5 py-3">2023 Lamborghini</td><td data-id="723" class="px-5 py-3"><span data-id="724" class="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full text-xs">Hot</span></td><td data-id="725" class="px-5 py-3 text-gray-400 tabular-nums">May 7</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <!-- ============================================================ -->
 <!-- PAGE 5: ABOUT / REVIEWS -->
 <!-- ============================================================ -->
-<section data-id="684" id="page-about" class="page-section">
-
-  <!-- About Hero -->
-  <div data-id="685" class="split-hero flex items-center justify-center" style="min-height:45vh">
-    <div data-id="686" class="split-line hidden md:block"></div>
-    <div data-id="687" class="hero-content text-center px-4 py-20">
-      <p data-id="688" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
-      <h1 data-id="689" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="about-hero-title-m3n4">ABOUT US & REVIEWS</h1>
+<section data-id="726" id="page-about" class="page-section">
+  <div data-id="727" class="split-hero flex items-center justify-center" style="min-height:45vh">
+    <div data-id="728" class="split-line hidden md:block"></div>
+    <div data-id="729" class="hero-content text-center px-4 py-20">
+      <p data-id="730" class="text-gold-400/60 text-xs tracking-[0.5em] mb-3">LUXURY AUTOMAXX • TINLEY PARK •</p>
+      <h1 data-id="731" class="font-display text-4xl md:text-6xl font-bold gold-text gold-glow tracking-wider" id="about-hero-title-m3n4">ABOUT US & REVIEWS</h1>
     </div>
   </div>
-
-  <!-- Dealership Story -->
-  <section data-id="690" class="py-16 px-4" id="about-story-o5p6">
-    <div data-id="691" class="max-w-4xl mx-auto text-center scroll-reveal">
-      <p data-id="692" class="text-gold-400/60 text-xs tracking-[0.4em] mb-3">OUR STORY</p>
-      <h2 data-id="693" class="font-display text-3xl md:text-4xl gold-text font-bold mb-6">A Legacy of Luxury Since 2011</h2>
-      <p data-id="694" class="text-gray-300 leading-relaxed mb-4">Founded in the heart of Tinley Park, Illinois, Luxury Automaxx has spent over 15 years redefining the pre-owned luxury vehicle experience. What started as a small passion project by automotive enthusiasts has grown into Chicagoland's most trusted destination for premium pre-owned vehicles.</p>
-      <p data-id="695" class="text-gray-400 leading-relaxed mb-4">Our showroom on Oak Park Avenue showcases hand-selected vehicles from the world's most prestigious marques — Porsche, Mercedes-Benz, BMW, Bentley, Lamborghini, Audi, and more. Every vehicle in our collection undergoes our legendary 150-point inspection process before earning the Luxury Automaxx seal of approval.</p>
-      <p data-id="696" class="text-gray-400 leading-relaxed">We believe luxury should be accessible. Our dedicated financing team works with over 20 lending partners to craft personalized payment solutions, making dream cars a reality for thousands of satisfied clients across the greater Chicago area and beyond.</p>
+  <section data-id="732" class="py-16 px-4" id="about-story-o5p6">
+    <div data-id="733" class="max-w-4xl mx-auto text-center scroll-reveal">
+      <p data-id="734" class="text-gold-400/60 text-xs tracking-[0.4em] mb-3">OUR STORY</p>
+      <h2 data-id="735" class="font-display text-3xl md:text-4xl gold-text font-bold mb-6">A Legacy of Luxury Since 2011</h2>
+      <p data-id="736" class="text-gray-300 leading-relaxed mb-4">Founded in the heart of Tinley Park, Illinois, Luxury Automaxx has spent over 15 years redefining the pre-owned luxury vehicle experience. What started as a small passion project by automotive enthusiasts has grown into Chicagoland's most trusted destination for premium pre-owned vehicles.</p>
+      <p data-id="737" class="text-gray-400 leading-relaxed mb-4">Our showroom on Oak Park Avenue showcases hand-selected vehicles from the world's most prestigious marques — Porsche, Mercedes-Benz, BMW, Bentley, Lamborghini, Audi, and more. Every vehicle in our collection undergoes our legendary 150-point inspection process before earning the Luxury Automaxx seal of approval.</p>
+      <p data-id="738" class="text-gray-400 leading-relaxed">We believe luxury should be accessible. Our dedicated financing team works with over 20 lending partners to craft personalized payment solutions, making dream cars a reality for thousands of satisfied clients across the greater Chicago area and beyond.</p>
     </div>
   </section>
-
-  <!-- Team -->
-  <section data-id="697" class="py-16 px-4 border-t border-gold-400/10" id="about-team-q7r8" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
-    <div data-id="698" class="max-w-5xl mx-auto">
-      <div data-id="699" class="text-center mb-12 scroll-reveal">
-        <p data-id="700" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">MEET THE TEAM</p>
-        <h2 data-id="701" class="font-display text-3xl gold-text font-bold">Our Leadership</h2>
-        <div data-id="702" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
-      </div>
-      <div data-id="703" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div data-id="704" class="text-center scroll-reveal">
-          <div data-id="705" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="706" class="font-display text-2xl font-bold text-night-400">MJ</span></div>
-          <h4 data-id="707" class="font-display font-bold">Marcus Johnson</h4>
-          <p data-id="708" class="text-xs text-gold-400/60 mt-1">Founder & CEO</p>
-        </div>
-        <div data-id="709" class="text-center scroll-reveal">
-          <div data-id="710" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="711" class="font-display text-2xl font-bold text-night-400">SR</span></div>
-          <h4 data-id="712" class="font-display font-bold">Sofia Rodriguez</h4>
-          <p data-id="713" class="text-xs text-gold-400/60 mt-1">Sales Director</p>
-        </div>
-        <div data-id="714" class="text-center scroll-reveal">
-          <div data-id="715" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="716" class="font-display text-2xl font-bold text-night-400">DK</span></div>
-          <h4 data-id="717" class="font-display font-bold">David Kim</h4>
-          <p data-id="718" class="text-xs text-gold-400/60 mt-1">Finance Manager</p>
-        </div>
-        <div data-id="719" class="text-center scroll-reveal">
-          <div data-id="720" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="721" class="font-display text-2xl font-bold text-night-400">AT</span></div>
-          <h4 data-id="722" class="font-display font-bold">Aisha Thompson</h4>
-          <p data-id="723" class="text-xs text-gold-400/60 mt-1">Service Director</p>
-        </div>
+  <section data-id="739" class="py-16 px-4 border-t border-gold-400/10" id="about-team-q7r8" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
+    <div data-id="740" class="max-w-5xl mx-auto">
+      <div data-id="741" class="text-center mb-12 scroll-reveal"><p data-id="742" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">MEET THE TEAM</p><h2 data-id="743" class="font-display text-3xl gold-text font-bold">Our Leadership</h2><div data-id="744" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div></div>
+      <div data-id="745" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div data-id="746" class="text-center scroll-reveal"><div data-id="747" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="748" class="font-display text-2xl font-bold text-night-400">MJ</span></div><h4 data-id="749" class="font-display font-bold">Marcus Johnson</h4><p data-id="750" class="text-xs text-gold-400/60 mt-1">Founder & CEO</p></div>
+        <div data-id="751" class="text-center scroll-reveal"><div data-id="752" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="753" class="font-display text-2xl font-bold text-night-400">SR</span></div><h4 data-id="754" class="font-display font-bold">Sofia Rodriguez</h4><p data-id="755" class="text-xs text-gold-400/60 mt-1">Sales Director</p></div>
+        <div data-id="756" class="text-center scroll-reveal"><div data-id="757" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="758" class="font-display text-2xl font-bold text-night-400">DK</span></div><h4 data-id="759" class="font-display font-bold">David Kim</h4><p data-id="760" class="text-xs text-gold-400/60 mt-1">Finance Manager</p></div>
+        <div data-id="761" class="text-center scroll-reveal"><div data-id="762" class="w-24 h-24 rounded-full bg-gradient-to-br from-gold-400 to-gold-700 flex items-center justify-center mx-auto mb-3"><span data-id="763" class="font-display text-2xl font-bold text-night-400">AT</span></div><h4 data-id="764" class="font-display font-bold">Aisha Thompson</h4><p data-id="765" class="text-xs text-gold-400/60 mt-1">Service Director</p></div>
       </div>
     </div>
   </section>
-
-  <!-- Rating Summary -->
-  <section data-id="724" class="py-16 px-4" id="about-rating-s9t0">
-    <div data-id="725" class="max-w-2xl mx-auto text-center scroll-reveal">
-      <p data-id="726" class="text-gold-400/60 text-xs tracking-[0.4em] mb-3">CUSTOMER SATISFACTION</p>
-      <h2 data-id="727" class="font-display text-6xl md:text-8xl gold-text font-bold gold-glow tabular-nums">4.9</h2>
-      <div data-id="728" class="flex justify-center mt-2 mb-2"><span data-id="729" class="star text-2xl">★ ★ ★ ★ ★</span></div>
-      <p data-id="730" class="text-gray-400 text-sm">Based on 2,847 Google Reviews</p>
+  <section data-id="766" class="py-16 px-4" id="about-rating-s9t0">
+    <div data-id="767" class="max-w-2xl mx-auto text-center scroll-reveal">
+      <p data-id="768" class="text-gold-400/60 text-xs tracking-[0.4em] mb-3">CUSTOMER SATISFACTION</p>
+      <h2 data-id="769" class="font-display text-6xl md:text-8xl gold-text font-bold gold-glow tabular-nums">4.9</h2>
+      <div data-id="770" class="flex justify-center mt-2 mb-2"><span data-id="771" class="star text-2xl">★ ★ ★ ★ ★</span></div>
+      <p data-id="772" class="text-gray-400 text-sm">Based on 2,847 Google Reviews</p>
     </div>
   </section>
-
-  <!-- Google Reviews Grid -->
-  <section data-id="731" class="py-12 px-4" id="about-reviews-u1v2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
-    <div data-id="732" class="max-w-6xl mx-auto">
-      <div data-id="733" class="text-center mb-10 scroll-reveal">
-        <h2 data-id="734" class="font-display text-3xl gold-text font-bold">Google Reviews</h2>
-        <div data-id="735" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div>
-      </div>
-      <div data-id="736" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="reviews-grid-w3x4">
-        <div data-id="737" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="738" class="star text-sm mb-2">★★★★★</div><p data-id="739" class="text-sm text-gray-300 mb-3">"Absolutely incredible experience. The team went above and beyond to find me the perfect Mercedes S580. Professional, transparent, and genuinely caring."</p><p data-id="740" class="text-xs gold-text font-bold">Jennifer L.</p><p data-id="741" class="text-[10px] text-gray-500">3 weeks ago</p></div>
-        <div data-id="742" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="743" class="star text-sm mb-2">★★★★★</div><p data-id="744" class="text-sm text-gray-300 mb-3">"Best dealership in the Chicagoland area, hands down. Got my dream BMW M8 at an unbeatable price. The financing process was seamless."</p><p data-id="745" class="text-xs gold-text font-bold">Robert K.</p><p data-id="746" class="text-[10px] text-gray-500">1 month ago</p></div>
-        <div data-id="747" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="748" class="star text-sm mb-2">★★★★★</div><p data-id="749" class="text-sm text-gray-300 mb-3">"From the showroom to the signing, everything was first-class. My Bentley Continental GT is flawless. These guys know luxury."</p><p data-id="750" class="text-xs gold-text font-bold">Patricia M.</p><p data-id="751" class="text-[10px] text-gray-500">1 month ago</p></div>
-        <div data-id="752" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="753" class="star text-sm mb-2">★★★★★</div><p data-id="754" class="text-sm text-gray-300 mb-3">"I've bought 3 cars from Luxury Automaxx now. Each time the experience gets better. They treat you like family. Highly recommended!"</p><p data-id="755" class="text-xs gold-text font-bold">Anthony D.</p><p data-id="756" class="text-[10px] text-gray-500">2 months ago</p></div>
-        <div data-id="757" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="758" class="star text-sm mb-2">★★★★★</div><p data-id="759" class="text-sm text-gray-300 mb-3">"The 150-point inspection gave me total peace of mind. My Audi RS7 drives like it just rolled off the factory floor. Exceptional quality."</p><p data-id="760" class="text-xs gold-text font-bold">Maria G.</p><p data-id="761" class="text-[10px] text-gray-500">2 months ago</p></div>
-        <div data-id="762" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="763" class="star text-sm mb-2">★★★★★</div><p data-id="764" class="text-sm text-gray-300 mb-3">"They delivered my Lamborghini Huracán right to my door in Indiana. White-glove service from start to finish. Absolutely worth the drive to Tinley Park."</p><p data-id="765" class="text-xs gold-text font-bold">Carlos R.</p><p data-id="766" class="text-[10px] text-gray-500">3 months ago</p></div>
-        <div data-id="767" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="768" class="star text-sm mb-2">★★★★★</div><p data-id="769" class="text-sm text-gray-300 mb-3">"Got approved for financing in under 10 minutes. The rate was better than my bank offered. Very impressed with the whole team."</p><p data-id="770" class="text-xs gold-text font-bold">Michelle W.</p><p data-id="771" class="text-[10px] text-gray-500">3 months ago</p></div>
-        <div data-id="772" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="773" class="star text-sm mb-2">★★★★★</div><p data-id="774" class="text-sm text-gray-300 mb-3">"No pressure, no games. Just honest people selling beautiful cars. My Porsche 911 is the best purchase I've ever made. Thank you, Luxury Automaxx!"</p><p data-id="775" class="text-xs gold-text font-bold">Thomas B.</p><p data-id="776" class="text-[10px] text-gray-500">4 months ago</p></div>
+  <section data-id="773" class="py-12 px-4" id="about-reviews-u1v2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
+    <div data-id="774" class="max-w-6xl mx-auto">
+      <div data-id="775" class="text-center mb-10 scroll-reveal"><h2 data-id="776" class="font-display text-3xl gold-text font-bold">Google Reviews</h2><div data-id="777" class="w-24 h-0.5 bg-gold-400 mx-auto mt-4"></div></div>
+      <div data-id="778" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="reviews-grid-w3x4">
+        <div data-id="779" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="780" class="star text-sm mb-2">★★★★★</div><p data-id="781" class="text-sm text-gray-300 mb-3">"Absolutely incredible experience. The team went above and beyond to find me the perfect Mercedes S580. Professional, transparent, and genuinely caring."</p><p data-id="782" class="text-xs gold-text font-bold">Jennifer L.</p><p data-id="783" class="text-[10px] text-gray-500">3 weeks ago</p></div>
+        <div data-id="784" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="785" class="star text-sm mb-2">★★★★★</div><p data-id="786" class="text-sm text-gray-300 mb-3">"Best dealership in the Chicagoland area, hands down. Got my dream BMW M8 at an unbeatable price. The financing process was seamless."</p><p data-id="787" class="text-xs gold-text font-bold">Robert K.</p><p data-id="788" class="text-[10px] text-gray-500">1 month ago</p></div>
+        <div data-id="789" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="790" class="star text-sm mb-2">★★★★★</div><p data-id="791" class="text-sm text-gray-300 mb-3">"From the showroom to the signing, everything was first-class. My Bentley Continental GT is flawless. These guys know luxury."</p><p data-id="792" class="text-xs gold-text font-bold">Patricia M.</p><p data-id="793" class="text-[10px] text-gray-500">1 month ago</p></div>
+        <div data-id="794" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="795" class="star text-sm mb-2">★★★★★</div><p data-id="796" class="text-sm text-gray-300 mb-3">"I've bought 3 cars from Luxury Automaxx now. Each time the experience gets better. They treat you like family. Highly recommended!"</p><p data-id="797" class="text-xs gold-text font-bold">Anthony D.</p><p data-id="798" class="text-[10px] text-gray-500">2 months ago</p></div>
+        <div data-id="799" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="800" class="star text-sm mb-2">★★★★★</div><p data-id="801" class="text-sm text-gray-300 mb-3">"The 150-point inspection gave me total peace of mind. My Audi RS7 drives like it just rolled off the factory floor. Exceptional quality."</p><p data-id="802" class="text-xs gold-text font-bold">Maria G.</p><p data-id="803" class="text-[10px] text-gray-500">2 months ago</p></div>
+        <div data-id="804" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="805" class="star text-sm mb-2">★★★★★</div><p data-id="806" class="text-sm text-gray-300 mb-3">"They delivered my Lamborghini Huracán right to my door in Indiana. White-glove service from start to finish. Absolutely worth the drive to Tinley Park."</p><p data-id="807" class="text-xs gold-text font-bold">Carlos R.</p><p data-id="808" class="text-[10px] text-gray-500">3 months ago</p></div>
+        <div data-id="809" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="810" class="star text-sm mb-2">★★★★★</div><p data-id="811" class="text-sm text-gray-300 mb-3">"Got approved for financing in under 10 minutes. The rate was better than my bank offered. Very impressed with the whole team."</p><p data-id="812" class="text-xs gold-text font-bold">Michelle W.</p><p data-id="813" class="text-[10px] text-gray-500">3 months ago</p></div>
+        <div data-id="814" class="testimonial-card rounded-xl p-5 scroll-reveal"><div data-id="815" class="star text-sm mb-2">★★★★★</div><p data-id="816" class="text-sm text-gray-300 mb-3">"No pressure, no games. Just honest people selling beautiful cars. My Porsche 911 is the best purchase I've ever made. Thank you, Luxury Automaxx!"</p><p data-id="817" class="text-xs gold-text font-bold">Thomas B.</p><p data-id="818" class="text-[10px] text-gray-500">4 months ago</p></div>
       </div>
     </div>
   </section>
-
-  <!-- Awards -->
-  <section data-id="777" class="py-12 px-4" id="about-awards-y5z6">
-    <div data-id="778" class="max-w-4xl mx-auto text-center scroll-reveal">
-      <p data-id="779" class="text-gold-400/60 text-xs tracking-[0.4em] mb-6">AWARDS & CERTIFICATIONS</p>
-      <div data-id="780" class="flex flex-wrap justify-center gap-6">
-        <div data-id="781" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="782" data-lucide="trophy" class="w-6 h-6 text-gold-400"></i><div data-id="783" class="text-left"><p data-id="784" class="text-sm font-bold">Best Dealer 2025</p><p data-id="785" class="text-[10px] text-gray-400">DealerRater</p></div></div>
-        <div data-id="786" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="787" data-lucide="award" class="w-6 h-6 text-gold-400"></i><div data-id="788" class="text-left"><p data-id="789" class="text-sm font-bold">Top 100 Dealers</p><p data-id="790" class="text-[10px] text-gray-400">Auto Dealer Monthly</p></div></div>
-        <div data-id="791" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="792" data-lucide="shield-check" class="w-6 h-6 text-gold-400"></i><div data-id="793" class="text-left"><p data-id="794" class="text-sm font-bold">BBB A+ Rating</p><p data-id="795" class="text-[10px] text-gray-400">Since 2015</p></div></div>
-        <div data-id="796" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="797" data-lucide="star" class="w-6 h-6 text-gold-400"></i><div data-id="798" class="text-left"><p data-id="799" class="text-sm font-bold">Customer Choice</p><p data-id="800" class="text-[10px] text-gray-400">Cars.com 2024</p></div></div>
+  <section data-id="819" class="py-12 px-4" id="about-awards-y5z6">
+    <div data-id="820" class="max-w-4xl mx-auto text-center scroll-reveal">
+      <p data-id="821" class="text-gold-400/60 text-xs tracking-[0.4em] mb-6">AWARDS & CERTIFICATIONS</p>
+      <div data-id="822" class="flex flex-wrap justify-center gap-6">
+        <div data-id="823" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="824" data-lucide="trophy" class="w-6 h-6 text-gold-400"></i><div data-id="825" class="text-left"><p data-id="826" class="text-sm font-bold">Best Dealer 2025</p><p data-id="827" class="text-[10px] text-gray-400">DealerRater</p></div></div>
+        <div data-id="828" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="829" data-lucide="award" class="w-6 h-6 text-gold-400"></i><div data-id="830" class="text-left"><p data-id="831" class="text-sm font-bold">Top 100 Dealers</p><p data-id="832" class="text-[10px] text-gray-400">Auto Dealer Monthly</p></div></div>
+        <div data-id="833" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="834" data-lucide="shield-check" class="w-6 h-6 text-gold-400"></i><div data-id="835" class="text-left"><p data-id="836" class="text-sm font-bold">BBB A+ Rating</p><p data-id="837" class="text-[10px] text-gray-400">Since 2015</p></div></div>
+        <div data-id="838" class="bg-night-100 rounded-xl p-4 border border-gold-400/10 flex items-center gap-3"><i data-id="839" data-lucide="star" class="w-6 h-6 text-gold-400"></i><div data-id="840" class="text-left"><p data-id="841" class="text-sm font-bold">Customer Choice</p><p data-id="842" class="text-[10px] text-gray-400">Cars.com 2024</p></div></div>
       </div>
     </div>
   </section>
-
-  <!-- Location -->
-  <section data-id="801" class="py-12 px-4 border-t border-gold-400/10" id="about-location-a1b2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
-    <div data-id="802" class="max-w-4xl mx-auto">
-      <div data-id="803" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div data-id="804" class="scroll-reveal">
-          <p data-id="805" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">VISIT US</p>
-          <h3 data-id="806" class="font-display text-2xl gold-text font-bold mb-4">Our Location</h3>
-          <div data-id="807" class="space-y-3">
-            <p data-id="808" class="flex items-start gap-2 text-sm"><i data-id="809" data-lucide="map-pin" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>17043 Oak Park Ave, Tinley Park, IL 60477</p>
-            <p data-id="810" class="flex items-start gap-2 text-sm"><i data-id="811" data-lucide="phone" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>(708) 555-LUXE</p>
-            <p data-id="812" class="flex items-start gap-2 text-sm"><i data-id="813" data-lucide="clock" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>Mon–Sat 9AM–8PM • Sun 10AM–5PM</p>
-            <p data-id="814" class="flex items-start gap-2 text-sm"><i data-id="815" data-lucide="mail" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>info@luxuryautomaxx.com</p>
+  <section data-id="843" class="py-12 px-4 border-t border-gold-400/10" id="about-location-a1b2" style="background:linear-gradient(180deg,#0f1118,#0a0a0a)">
+    <div data-id="844" class="max-w-4xl mx-auto">
+      <div data-id="845" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div data-id="846" class="scroll-reveal">
+          <p data-id="847" class="text-gold-400/60 text-xs tracking-[0.4em] mb-2">VISIT US</p>
+          <h3 data-id="848" class="font-display text-2xl gold-text font-bold mb-4">Our Location</h3>
+          <div data-id="849" class="space-y-3">
+            <p data-id="850" class="flex items-start gap-2 text-sm"><i data-id="851" data-lucide="map-pin" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>17043 Oak Park Ave, Tinley Park, IL 60477</p>
+            <p data-id="852" class="flex items-start gap-2 text-sm"><i data-id="853" data-lucide="phone" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>(708) 555-LUXE</p>
+            <p data-id="854" class="flex items-start gap-2 text-sm"><i data-id="855" data-lucide="clock" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>Mon–Sat 9AM–8PM • Sun 10AM–5PM</p>
+            <p data-id="856" class="flex items-start gap-2 text-sm"><i data-id="857" data-lucide="mail" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>info@luxuryautomaxx.com</p>
           </div>
         </div>
-        <div data-id="816" class="scroll-reveal">
-          <div data-id="817" class="bg-night-100 rounded-2xl h-64 border border-gold-400/10 flex items-center justify-center relative overflow-hidden">
-            <div data-id="818" class="absolute inset-0 opacity-10" style="background:repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(201,168,76,0.3) 20px,rgba(201,168,76,0.3) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(201,168,76,0.3) 20px,rgba(201,168,76,0.3) 21px);"></div>
-            <div data-id="819" class="text-center relative z-10">
-              <i data-id="820" data-lucide="map-pin" class="w-10 h-10 text-gold-400 mx-auto mb-2"></i>
-              <p data-id="821" class="font-display text-lg gold-text font-bold">Tinley Park, IL</p>
-              <p data-id="822" class="text-xs text-gray-400">17043 Oak Park Ave</p>
-              <p data-id="823" class="text-xs text-gray-500 mt-1">30 min south of Downtown Chicago</p>
-            </div>
+        <div data-id="858" class="scroll-reveal">
+          <div data-id="859" class="bg-night-100 rounded-2xl h-64 border border-gold-400/10 flex items-center justify-center relative overflow-hidden">
+            <div data-id="860" class="absolute inset-0 opacity-10" style="background:repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(201,168,76,0.3) 20px,rgba(201,168,76,0.3) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(201,168,76,0.3) 20px,rgba(201,168,76,0.3) 21px);"></div>
+            <div data-id="861" class="text-center relative z-10"><i data-id="862" data-lucide="map-pin" class="w-10 h-10 text-gold-400 mx-auto mb-2"></i><p data-id="863" class="font-display text-lg gold-text font-bold">Tinley Park, IL</p><p data-id="864" class="text-xs text-gray-400">17043 Oak Park Ave</p><p data-id="865" class="text-xs text-gray-500 mt-1">30 min south of Downtown Chicago</p></div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </section>
 
 </main>
 
 <!-- BUY SELL TRADE FINANCE BANNER -->
-<div data-id="824" class="buy-sell-banner py-5 text-center" id="bst-banner-c3d4">
-  <p data-id="825" class="font-display text-xl md:text-3xl font-bold gold-text tracking-[0.3em] gold-glow">BUY • SELL • TRADE • FINANCE</p>
+<div data-id="866" class="buy-sell-banner py-5 text-center" id="bst-banner-c3d4">
+  <p data-id="867" class="font-display text-xl md:text-3xl font-bold gold-text tracking-[0.3em] gold-glow">BUY • SELL • TRADE • FINANCE</p>
 </div>
 
 <!-- FOOTER -->
-<footer data-id="826" class="py-16 px-4 border-t border-gold-400/10" id="footer-e5f6" style="background:linear-gradient(180deg,#0a0a0a,#050505)">
-  <div data-id="827" class="max-w-7xl mx-auto">
-    <div data-id="828" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-      <!-- Logo Col -->
-      <div data-id="829">
-        <h3 data-id="830" class="font-display text-xl gold-text font-bold tracking-wider">LUXURY AUTOMAXX</h3>
-        <p data-id="831" class="text-[10px] text-gold-400/50 tracking-[0.25em] mb-4" style="font-variant:small-caps;">• tinley park •</p>
-        <p data-id="832" class="text-sm text-gray-400 leading-relaxed">Chicagoland's premier destination for pre-owned luxury vehicles. Where dreams meet the driveway.</p>
-        <!-- Socials -->
-        <div data-id="833" class="flex gap-3 mt-4">
-          <a data-id="834" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="835" data-lucide="facebook" class="w-4 h-4 text-gold-400"></i></a>
-          <a data-id="836" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="837" data-lucide="instagram" class="w-4 h-4 text-gold-400"></i></a>
-          <a data-id="838" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="839" data-lucide="youtube" class="w-4 h-4 text-gold-400"></i></a>
-          <a data-id="840" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="841" data-lucide="music" class="w-4 h-4 text-gold-400"></i></a>
+<footer data-id="868" class="py-16 px-4 border-t border-gold-400/10" id="footer-e5f6" style="background:linear-gradient(180deg,#0a0a0a,#050505)">
+  <div data-id="869" class="max-w-7xl mx-auto">
+    <div data-id="870" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div data-id="871">
+        <h3 data-id="872" class="font-display text-xl gold-text font-bold tracking-wider">LUXURY AUTOMAXX</h3>
+        <p data-id="873" class="text-[10px] text-gold-400/50 tracking-[0.25em] mb-4" style="font-variant:small-caps;">• tinley park •</p>
+        <p data-id="874" class="text-sm text-gray-400 leading-relaxed">Chicagoland's premier destination for pre-owned luxury vehicles. Where dreams meet the driveway.</p>
+        <div data-id="875" class="flex gap-3 mt-4">
+          <a data-id="876" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="877" data-lucide="facebook" class="w-4 h-4 text-gold-400"></i></a>
+          <a data-id="878" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="879" data-lucide="instagram" class="w-4 h-4 text-gold-400"></i></a>
+          <a data-id="880" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="881" data-lucide="youtube" class="w-4 h-4 text-gold-400"></i></a>
+          <a data-id="882" class="w-9 h-9 rounded-full bg-gold-400/10 flex items-center justify-center hover:bg-gold-400/20 transition cursor-pointer"><i data-id="883" data-lucide="music" class="w-4 h-4 text-gold-400"></i></a>
         </div>
       </div>
-      <!-- Quick Links -->
-      <div data-id="842">
-        <h4 data-id="843" class="font-display text-sm gold-text font-bold tracking-wider mb-4">QUICK LINKS</h4>
-        <ul data-id="844" class="space-y-2 text-sm text-gray-400">
-          <li data-id="845"><span data-id="846" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="home">Home</span></li>
-          <li data-id="847"><span data-id="848" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="inventory">Inventory</span></li>
-          <li data-id="849"><span data-id="850" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="financing">Financing</span></li>
-          <li data-id="851"><span data-id="852" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="portal">Customer Portal</span></li>
-          <li data-id="853"><span data-id="854" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="about">About Us</span></li>
+      <div data-id="884">
+        <h4 data-id="885" class="font-display text-sm gold-text font-bold tracking-wider mb-4">QUICK LINKS</h4>
+        <ul data-id="886" class="space-y-2 text-sm text-gray-400">
+          <li data-id="887"><span data-id="888" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="home">Home</span></li>
+          <li data-id="889"><span data-id="890" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="inventory">Inventory</span></li>
+          <li data-id="891"><span data-id="892" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="financing">Financing</span></li>
+          <li data-id="893"><span data-id="894" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="portal">Customer Portal</span></li>
+          <li data-id="895"><span data-id="896" class="hover:text-gold-400 transition cursor-pointer nav-link" data-page="about">About Us</span></li>
         </ul>
       </div>
-      <!-- Services -->
-      <div data-id="855">
-        <h4 data-id="856" class="font-display text-sm gold-text font-bold tracking-wider mb-4">SERVICES</h4>
-        <ul data-id="857" class="space-y-2 text-sm text-gray-400">
-          <li data-id="858">Pre-Owned Sales</li>
-          <li data-id="859">Trade-In Appraisals</li>
-          <li data-id="860">Auto Financing</li>
-          <li data-id="861">Vehicle Inspection</li>
-          <li data-id="862">Concierge Delivery</li>
-          <li data-id="863">Extended Warranty</li>
+      <div data-id="897">
+        <h4 data-id="898" class="font-display text-sm gold-text font-bold tracking-wider mb-4">SERVICES</h4>
+        <ul data-id="899" class="space-y-2 text-sm text-gray-400">
+          <li data-id="900">Pre-Owned Sales</li>
+          <li data-id="901">Trade-In Appraisals</li>
+          <li data-id="902">Auto Financing</li>
+          <li data-id="903">Vehicle Inspection</li>
+          <li data-id="904">Concierge Delivery</li>
+          <li data-id="905">Extended Warranty</li>
         </ul>
       </div>
-      <!-- Contact -->
-      <div data-id="864">
-        <h4 data-id="865" class="font-display text-sm gold-text font-bold tracking-wider mb-4">CONTACT US</h4>
-        <ul data-id="866" class="space-y-3 text-sm text-gray-400">
-          <li data-id="867" class="flex items-start gap-2"><i data-id="868" data-lucide="map-pin" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>17043 Oak Park Ave<br data-id="869">Tinley Park, IL 60477</li>
-          <li data-id="870" class="flex items-center gap-2"><i data-id="871" data-lucide="phone" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>(708) 555-LUXE</li>
-          <li data-id="872" class="flex items-center gap-2"><i data-id="873" data-lucide="mail" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>info@luxuryautomaxx.com</li>
-          <li data-id="874" class="flex items-center gap-2"><i data-id="875" data-lucide="clock" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>Mon–Sat 9–8 • Sun 10–5</li>
+      <div data-id="906">
+        <h4 data-id="907" class="font-display text-sm gold-text font-bold tracking-wider mb-4">CONTACT US</h4>
+        <ul data-id="908" class="space-y-3 text-sm text-gray-400">
+          <li data-id="909" class="flex items-start gap-2"><i data-id="910" data-lucide="map-pin" class="w-4 h-4 text-gold-400 mt-0.5 flex-shrink-0"></i>17043 Oak Park Ave<br data-id="911">Tinley Park, IL 60477</li>
+          <li data-id="912" class="flex items-center gap-2"><i data-id="913" data-lucide="phone" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>(708) 555-LUXE</li>
+          <li data-id="914" class="flex items-center gap-2"><i data-id="915" data-lucide="mail" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>info@luxuryautomaxx.com</li>
+          <li data-id="916" class="flex items-center gap-2"><i data-id="917" data-lucide="clock" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>Mon–Sat 9–8 • Sun 10–5</li>
         </ul>
       </div>
     </div>
-    <div data-id="876" class="border-t border-gold-400/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-500">
-      <p data-id="877">© 2026 Luxury Automaxx. All rights reserved.</p>
-      <p data-id="878">Made by Copilot</p>
-      <p data-id="879" class="text-gold-400/40 tracking-wider">LUXURY AUTOMAXX • TINLEY PARK •</p>
+    <div data-id="918" class="border-t border-gold-400/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-gray-500">
+      <p data-id="919">© 2026 Luxury Automaxx. All rights reserved.</p>
+      <p data-id="920">Made by Copilot</p>
+      <p data-id="921" class="text-gold-400/40 tracking-wider">LUXURY AUTOMAXX • TINLEY PARK •</p>
     </div>
   </div>
 </footer>
@@ -1294,30 +1195,18 @@ function navigateTo(page) {
   document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
   const target = document.getElementById('page-' + page);
   if (target) target.classList.add('active');
-  
-  // Update nav active states
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   document.querySelectorAll(`.nav-link[data-page="${page}"]`).forEach(l => l.classList.add('active'));
-  
-  // Close mobile menu
   document.getElementById('mobile-menu-i5j6').classList.add('hidden');
-  
-  // Scroll to top
   window.scrollTo({top:0,behavior:'smooth'});
-  
-  // If inventory, render
   if (page === 'inventory') renderInventory();
-  
-  // Re-init scroll reveals
   setTimeout(initScrollReveal, 100);
 }
 
-// Nav clicks (desktop + footer + all nav-links)
 document.querySelectorAll('[data-page]').forEach(el => {
   el.addEventListener('click', () => navigateTo(el.dataset.page));
 });
 
-// Mobile menu
 document.getElementById('mobile-menu-btn-g3h4').addEventListener('click', () => {
   document.getElementById('mobile-menu-i5j6').classList.remove('hidden');
 });
@@ -1325,7 +1214,6 @@ document.getElementById('mobile-menu-close-k7l8').addEventListener('click', () =
   document.getElementById('mobile-menu-i5j6').classList.add('hidden');
 });
 
-// Nav scroll effect
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('main-nav-k1l2');
   if (window.scrollY > 50) {
@@ -1335,7 +1223,6 @@ window.addEventListener('scroll', () => {
     nav.style.background = 'rgba(10,10,10,0.8)';
     nav.style.borderBottom = 'none';
   }
-  // Back to top
   const btt = document.getElementById('back-to-top-i9j0');
   if (window.scrollY > 400) btt.classList.add('visible');
   else btt.classList.remove('visible');
@@ -1375,7 +1262,6 @@ updateFavBadge();
 
 document.getElementById('fav-count-btn-c9d0').addEventListener('click', () => {
   navigateTo('portal');
-  // Auto-login to show saved
   handleCustomerLogin();
 });
 
@@ -1395,7 +1281,6 @@ document.querySelectorAll('.testimonial-dot').forEach(dot => {
   dot.addEventListener('click', () => showTestimonial(parseInt(dot.dataset.index)));
 });
 
-// Auto-rotate
 setInterval(() => {
   showTestimonial((currentTestimonial + 1) % testimonials.length);
 }, 5000);
@@ -1433,10 +1318,8 @@ function renderInventory() {
     </div>
   `).join('');
   
-  // Count
   document.getElementById('inv-count-m9n0').textContent = `Showing ${pageData.length} of ${filteredVehicles.length} vehicles`;
   
-  // Pagination
   const totalPages = Math.ceil(filteredVehicles.length / PAGE_SIZE);
   const pagEl = document.getElementById('inv-pagination-o1p2');
   pagEl.innerHTML = '';
@@ -1448,7 +1331,6 @@ function renderInventory() {
     pagEl.appendChild(btn);
   }
   
-  // Re-attach event listeners
   attachInventoryListeners();
   setTimeout(initScrollReveal, 100);
   lucide.createIcons();
@@ -1469,7 +1351,6 @@ function attachInventoryListeners() {
   });
 }
 
-// Filters
 document.getElementById('inv-search-a7b8').addEventListener('input', filterInventory);
 document.getElementById('inv-price-filter-c9d0').addEventListener('change', filterInventory);
 document.getElementById('inv-year-filter-e1f2').addEventListener('change', filterInventory);
@@ -1492,7 +1373,6 @@ function filterInventory() {
   renderInventory();
 }
 
-// Grid/List toggle
 document.getElementById('inv-grid-btn-i5j6').addEventListener('click', () => {
   isGridView = true;
   document.getElementById('inv-grid-btn-i5j6').classList.add('border-gold-400/30','text-gold-400');
@@ -1523,11 +1403,8 @@ function openVehicleModal(id) {
   document.getElementById('modal-year-a3b4').textContent = v.year;
   document.getElementById('modal-type-c5d6').textContent = v.type;
   document.getElementById('modal-features-e7f8').innerHTML = v.features.map(f => `<li class="flex items-center gap-1"><i data-lucide="check" class="w-3 h-3 text-gold-400"></i>${f}</li>`).join('');
-  
-  // Fav button state
   const favBtn = document.querySelector('.fav-modal-btn');
   if (favBtn) favBtn.dataset.vehicleId = id;
-  
   document.getElementById('vehicle-modal-m9n0').classList.add('show');
   lucide.createIcons();
 }
@@ -1542,7 +1419,6 @@ document.getElementById('vehicle-modal-m9n0').addEventListener('click', (e) => {
   }
 });
 
-// Modal action buttons
 document.querySelectorAll('.modal-action-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const action = btn.dataset.action;
@@ -1578,13 +1454,11 @@ function calcPayment() {
 });
 calcPayment();
 
-// Financing form submit
 document.getElementById('fin-form-a3b4').addEventListener('submit', (e) => {
   e.preventDefault();
   showToast('Application submitted! Check your email for confirmation. ✅');
 });
 
-// Status checker
 document.getElementById('fin-status-btn-s7t8').addEventListener('click', () => {
   const val = document.getElementById('fin-status-input-q5r6').value;
   if (val.trim()) showToast('Status: APPROVED ✅ — Contact us to finalize!');
@@ -1623,11 +1497,9 @@ document.getElementById('portal-staff-login-m7n8').addEventListener('click', han
 document.getElementById('portal-logout-w7x8').addEventListener('click', handleLogout);
 document.getElementById('staff-logout-k1l2').addEventListener('click', handleLogout);
 
-// Check session
 if (sessionStorage.getItem('lam-auth') === 'customer') handleCustomerLogin();
 else if (sessionStorage.getItem('lam-auth') === 'staff') handleStaffLogin();
 
-// Dashboard tabs
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1655,7 +1527,6 @@ function renderSavedVehicles() {
   }).join('');
 }
 
-// Doc upload cards
 document.querySelectorAll('.doc-upload-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -1672,13 +1543,11 @@ function initScrollReveal() {
       }
     });
   }, { threshold: 0.1 });
-  
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 }
 initScrollReveal();
 
 // ==================== INITIAL SETUP ====================
-// Attach featured page view detail buttons
 document.querySelectorAll('#featured-grid-s1t2 .view-details-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -1686,7 +1555,6 @@ document.querySelectorAll('#featured-grid-s1t2 .view-details-btn').forEach(btn =
   });
 });
 
-// Init Lucide
 lucide.createIcons();
 </script>
 </body>
